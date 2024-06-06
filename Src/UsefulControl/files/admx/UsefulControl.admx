@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2023-2024 CJH.  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="UsefulControl" namespace="CJH.Policies.UsefulControl" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <!--  <category name="CJH" displayName="$(string.CJH)"/> -->
+    <category name="UsefulControl" displayName="$(string.UsefulControl)"/>
+      <!--  <parentCategory ref="" /> 
+    </category> -->
+  </categories>
+  <policies>
+    <policy name="UsefulControlDisbFu" class="Both" displayName="$(string.UsefulControlDisbFu)" explainText="$(string.UsefulControlDisbFu_Help)" key="Software\CJH\Policies\UsefulControl" valueName="DisableFeatures">
+      <parentCategory ref="UsefulControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="UsefulControlDisbFuTip" class="Both" displayName="$(string.UsefulControlDisbFuTip)" explainText="$(string.UsefulControlDisbFuTip_Help)" key="Software\CJH\Policies\UsefulControl" valueName="DisableFeaturesTip">
+      <parentCategory ref="UsefulControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+	<policy name="UsefulControlNoSaveProfile" class="Both" displayName="$(string.UsefulControlNoSaveProfile)" explainText="$(string.UsefulControlNoSaveProfile_Help)" key="Software\CJH\Policies\UsefulControl" valueName="NoSaveProfile">
+      <parentCategory ref="UsefulControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>
