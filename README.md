@@ -1,6 +1,6 @@
 # UsefulControl - 实用工具集合小工具
 
-
+### 一款为大屏类电脑（如希沃）编写的实用工具，当然普通电脑也可以使用。
 ### 转到[发布页](https://github.com/cjhdevact/UsefulControl/releases)下载程序或源代码。 ###
 ### 早期版本的源代码也在发布页里。 ###
 
