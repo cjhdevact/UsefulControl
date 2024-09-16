@@ -382,7 +382,7 @@ Public Class Form1
     Public CurState As Integer
     Public MovedV As Integer
     Public UseMoveV As Integer
-    Public NavTargetNames(30) As String
+    Public NavTargetNames(32) As String
     Public DocTargetNames(96) As String
 
     Public CloseAppThread As New System.Threading.Thread(AddressOf CloseApp)
@@ -418,6 +418,9 @@ Public Class Form1
         NavTargetNames(13) = "PBoard64"
         NavTargetNames(14) = "LockTime264"
         NavTargetNames(15) = "PBoard264"
+        NavTargetNames(30) = "CountDownControl"
+        NavTargetNames(31) = "NetworkTestControl"
+        NavTargetNames(32) = "LockTimeScr"
 
         NavTargetNames(16) = "PPTService"
         NavTargetNames(17) = "SeewoCore"
@@ -433,7 +436,6 @@ Public Class Form1
         NavTargetNames(27) = "PincoMirror"
         NavTargetNames(28) = "SeewoService"
         NavTargetNames(29) = "SeewoLauncher"
-        NavTargetNames(30) = "CountDownControl"
 
         DocTargetNames(0) = "WINWORD"
         DocTargetNames(1) = "EXCEL"

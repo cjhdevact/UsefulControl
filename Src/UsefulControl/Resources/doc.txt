@@ -37,6 +37,7 @@
   LastContainer.exe, LastContainerDaemon.exe, EasiRecorder.exe, 
   seewoPincoTeacher.exe, seewoPincoTeacherService.exe, PincoMirror.exe, 
   SeewoService*.exe, SeewoLauncher.exe,CountDownControl.exe
+  NetworkTestControl.exe,LockTimeScr.exe
 三、一键关闭课件支持关闭的程序
   目前支持关闭包括以下关键字名称的程序：
   1.Microsoft Office:

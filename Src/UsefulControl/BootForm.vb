@@ -81,7 +81,7 @@ Public Class BootForm
     Public UseMoveV As Integer
     Public b As Integer
     Public disi As System.Drawing.Graphics
-    Public NavTargetNames(29) As String
+    Public NavTargetNames(32) As String
     Public UnSupportDarkSys As Integer
     Public UnSaveData As Integer
     Public DisbFuState As Integer
@@ -434,6 +434,9 @@ Public Class BootForm
         NavTargetNames(13) = "PBoard64"
         NavTargetNames(14) = "LockTime264"
         NavTargetNames(15) = "PBoard264"
+        NavTargetNames(30) = "CountDownControl"
+        NavTargetNames(31) = "NetworkTestControl"
+        NavTargetNames(32) = "LockTimeScr"
 
         NavTargetNames(16) = "PPTService"
         NavTargetNames(17) = "SeewoCore"
