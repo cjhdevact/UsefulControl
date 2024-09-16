@@ -498,6 +498,50 @@ Public Class BootForm
 
             FakeShutdownForm.Timer1.Enabled = True
             Uif = 1
+            FakeShutdownForm.FakeMode = 0
+            FakeShutdownForm.ShowDialog()
+            End
+            'ElseIf Command().ToLower = "/fakeshutdownui" Then
+            '    FakeShutdownForm.PictureBox1.Visible = True
+            '    FakeShutdownForm.Label1.Visible = True
+            '    Me.WindowState = FormWindowState.Minimized
+            '    FakeShutdownForm.Timer1.Enabled = False
+            '    FakeShutdownForm.ShowDialog()
+            '    End
+        ElseIf Command().ToLower = "/fakeshutdownlenovo" Then
+            Me.WindowState = FormWindowState.Minimized
+            Me.Hide()
+            Me.Visible = False
+
+            Try
+                For Each TargetNamea As String In NavTargetNames
+                    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                    Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide)
+                Next
+
+                For Each TargetName As String In NavTargetNames
+                    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                    Dim TargetPath As String '存储进程路径为文本型
+                    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                        For i = 0 To TargetKill.Length - 1
+                            TargetPath = TargetKill(i).MainModule.FileName
+                            TargetKill(i).Kill()
+                        Next
+                        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                        '   Exit Sub
+                    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                        TargetKill(0).Kill()
+                    End If
+                    'Me.Dispose(1) '关闭自身进程
+                Next
+            Catch ex As Exception
+            End Try
+
+
+            FakeShutdownForm.Timer1.Enabled = True
+            Uif = 1
+            FakeShutdownForm.FakeMode = 1
             FakeShutdownForm.ShowDialog()
             End
             'ElseIf Command().ToLower = "/fakeshutdownui" Then
@@ -700,7 +744,9 @@ Public Class BootForm
         If Not (Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar") Then
             'Me.Hide()
             'Me.WindowState = FormWindowState.Minimized
-            Me.Location = New Point(-50, -50)
+            Dim SysDpiX As Single = Me.CreateGraphics().DpiX / 96
+            Dim SysDpiY As Single = Me.CreateGraphics().DpiY / 96
+            Me.Location = New Point(-(Me.Width + 5 * SysDpiX), -(Me.Height + 5 * SysDpiY))
             Form1.Show()
         End If
     End Sub

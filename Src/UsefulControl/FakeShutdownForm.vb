@@ -37,6 +37,7 @@ Public Class FakeShutdownForm
     End Function
 
     Public a As Integer
+    Public FakeMode As Integer
     Private Sub FakeShutdownForm_MouseDoubleClick(sender As System.Object, e As System.EventArgs) Handles MyBase.MouseDoubleClick
         If a = 5 Then
             Me.Close()
@@ -55,6 +56,7 @@ Public Class FakeShutdownForm
         For i As Integer = 1 To 50
             SendMessageW(Me.Handle, &H319, Me.Handle, New IntPtr(down))
         Next
+        Me.TableLayoutPanel1.BackgroundImage = Nothing
     End Sub
     Private Sub TableLayoutPanel1_MouseDoubleClick(sender As System.Object, e As System.EventArgs) Handles TableLayoutPanel1.MouseDoubleClick
         If a = 5 Then
@@ -67,8 +69,12 @@ Public Class FakeShutdownForm
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Me.PictureBox1.Visible = False
         Me.Label1.Visible = False
+        If FakeMode = 1 Then
+            Me.TableLayoutPanel1.BackgroundImage = My.Resources.lenovoshut
+        Else
+            SeewoFakeShut.Show()
+        End If
         'Form1.ChangeMonitorState(Form1.MonitorMode.MonitorOff)
-        SeewoFakeShut.Show()
         Timer1.Enabled = False
     End Sub
 End Class

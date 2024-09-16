@@ -50,6 +50,7 @@ Partial Class Form1
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button23 = New System.Windows.Forms.Button()
         Me.Button24 = New System.Windows.Forms.Button()
+        Me.Button25 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button2
@@ -64,7 +65,7 @@ Partial Class Form1
         Me.Button2.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(130, 28)
-        Me.Button2.TabIndex = 2
+        Me.Button2.TabIndex = 23
         Me.Button2.Text = "关机"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -80,7 +81,7 @@ Partial Class Form1
         Me.Button1.Margin = New System.Windows.Forms.Padding(0, 0, 2, 0)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(130, 28)
-        Me.Button1.TabIndex = 1
+        Me.Button1.TabIndex = 22
         Me.Button1.Text = "重启"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -100,7 +101,7 @@ Partial Class Form1
         Me.Button3.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(125, 28)
-        Me.Button3.TabIndex = 3
+        Me.Button3.TabIndex = 24
         Me.Button3.Text = "设置"
         Me.Button3.UseVisualStyleBackColor = False
         '
@@ -117,7 +118,7 @@ Partial Class Form1
         Me.Button4.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(30, 30)
-        Me.Button4.TabIndex = 0
+        Me.Button4.TabIndex = 1
         Me.Button4.TabStop = False
         Me.Button4.Text = "×"
         Me.Button4.UseVisualStyleBackColor = False
@@ -143,7 +144,7 @@ Partial Class Form1
         Me.Button5.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(125, 28)
-        Me.Button5.TabIndex = 4
+        Me.Button5.TabIndex = 2
         Me.Button5.Text = "关闭屏幕"
         Me.Button5.UseVisualStyleBackColor = False
         '
@@ -155,11 +156,11 @@ Partial Class Form1
         Me.Button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(20, 100)
+        Me.Button6.Location = New System.Drawing.Point(21, 93)
         Me.Button6.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(125, 28)
-        Me.Button6.TabIndex = 8
+        Me.Button6.TabIndex = 6
         Me.Button6.Text = "睡眠"
         Me.Button6.UseVisualStyleBackColor = False
         '
@@ -175,7 +176,7 @@ Partial Class Form1
         Me.Button7.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(125, 28)
-        Me.Button7.TabIndex = 5
+        Me.Button7.TabIndex = 3
         Me.Button7.Text = "锁定"
         Me.Button7.UseVisualStyleBackColor = False
         '
@@ -187,11 +188,11 @@ Partial Class Form1
         Me.Button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(165, 100)
+        Me.Button8.Location = New System.Drawing.Point(166, 93)
         Me.Button8.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(125, 28)
-        Me.Button8.TabIndex = 9
+        Me.Button8.TabIndex = 7
         Me.Button8.Text = "休眠"
         Me.Button8.UseVisualStyleBackColor = False
         '
@@ -207,7 +208,7 @@ Partial Class Form1
         Me.Button9.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(125, 28)
-        Me.Button9.TabIndex = 6
+        Me.Button9.TabIndex = 4
         Me.Button9.Text = "关屏-双击退出"
         Me.Button9.UseVisualStyleBackColor = False
         '
@@ -219,11 +220,11 @@ Partial Class Form1
         Me.Button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button10.ForeColor = System.Drawing.Color.White
-        Me.Button10.Location = New System.Drawing.Point(310, 100)
+        Me.Button10.Location = New System.Drawing.Point(310, 93)
         Me.Button10.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(125, 28)
-        Me.Button10.TabIndex = 10
+        Me.Button10.TabIndex = 8
         Me.Button10.Text = "黑屏-双击退出"
         Me.Button10.UseVisualStyleBackColor = False
         '
@@ -239,7 +240,7 @@ Partial Class Form1
         Me.Button11.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(125, 28)
-        Me.Button11.TabIndex = 7
+        Me.Button11.TabIndex = 5
         Me.Button11.Text = "假关机界面"
         Me.Button11.UseVisualStyleBackColor = False
         '
@@ -251,12 +252,12 @@ Partial Class Form1
         Me.Button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button12.ForeColor = System.Drawing.Color.White
-        Me.Button12.Location = New System.Drawing.Point(455, 100)
+        Me.Button12.Location = New System.Drawing.Point(454, 93)
         Me.Button12.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(125, 28)
-        Me.Button12.TabIndex = 11
-        Me.Button12.Text = "假关机"
+        Me.Button12.TabIndex = 9
+        Me.Button12.Text = "假关机(希沃)"
         Me.Button12.UseVisualStyleBackColor = False
         '
         'Button13
@@ -267,11 +268,11 @@ Partial Class Form1
         Me.Button13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button13.ForeColor = System.Drawing.Color.White
-        Me.Button13.Location = New System.Drawing.Point(20, 150)
+        Me.Button13.Location = New System.Drawing.Point(165, 137)
         Me.Button13.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(125, 28)
-        Me.Button13.TabIndex = 12
+        Me.Button13.TabIndex = 11
         Me.Button13.Text = "希沃纯净模式"
         Me.Button13.UseVisualStyleBackColor = False
         '
@@ -283,11 +284,11 @@ Partial Class Form1
         Me.Button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button14.ForeColor = System.Drawing.Color.White
-        Me.Button14.Location = New System.Drawing.Point(165, 150)
+        Me.Button14.Location = New System.Drawing.Point(309, 137)
         Me.Button14.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button14.Name = "Button14"
         Me.Button14.Size = New System.Drawing.Size(125, 28)
-        Me.Button14.TabIndex = 13
+        Me.Button14.TabIndex = 12
         Me.Button14.Text = "一键关闭课件"
         Me.Button14.UseVisualStyleBackColor = False
         '
@@ -299,11 +300,11 @@ Partial Class Form1
         Me.Button15.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button15.ForeColor = System.Drawing.Color.White
-        Me.Button15.Location = New System.Drawing.Point(310, 150)
+        Me.Button15.Location = New System.Drawing.Point(455, 137)
         Me.Button15.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(125, 28)
-        Me.Button15.TabIndex = 14
+        Me.Button15.TabIndex = 13
         Me.Button15.Text = "时钟锁屏"
         Me.Button15.UseVisualStyleBackColor = False
         '
@@ -315,11 +316,11 @@ Partial Class Form1
         Me.Button16.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button16.ForeColor = System.Drawing.Color.White
-        Me.Button16.Location = New System.Drawing.Point(455, 150)
+        Me.Button16.Location = New System.Drawing.Point(21, 180)
         Me.Button16.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(125, 28)
-        Me.Button16.TabIndex = 15
+        Me.Button16.TabIndex = 14
         Me.Button16.Text = "时钟锁屏2"
         Me.Button16.UseVisualStyleBackColor = False
         '
@@ -331,11 +332,11 @@ Partial Class Form1
         Me.Button17.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button17.ForeColor = System.Drawing.Color.White
-        Me.Button17.Location = New System.Drawing.Point(20, 200)
+        Me.Button17.Location = New System.Drawing.Point(165, 180)
         Me.Button17.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(125, 28)
-        Me.Button17.TabIndex = 16
+        Me.Button17.TabIndex = 15
         Me.Button17.Text = "公告栏"
         Me.Button17.UseVisualStyleBackColor = False
         '
@@ -347,11 +348,11 @@ Partial Class Form1
         Me.Button18.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button18.ForeColor = System.Drawing.Color.White
-        Me.Button18.Location = New System.Drawing.Point(165, 200)
+        Me.Button18.Location = New System.Drawing.Point(310, 180)
         Me.Button18.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button18.Name = "Button18"
         Me.Button18.Size = New System.Drawing.Size(125, 28)
-        Me.Button18.TabIndex = 17
+        Me.Button18.TabIndex = 16
         Me.Button18.Text = "公告栏2"
         Me.Button18.UseVisualStyleBackColor = False
         '
@@ -363,11 +364,11 @@ Partial Class Form1
         Me.Button19.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button19.ForeColor = System.Drawing.Color.White
-        Me.Button19.Location = New System.Drawing.Point(310, 200)
+        Me.Button19.Location = New System.Drawing.Point(455, 180)
         Me.Button19.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(125, 28)
-        Me.Button19.TabIndex = 18
+        Me.Button19.TabIndex = 17
         Me.Button19.Text = "图片展示"
         Me.Button19.UseVisualStyleBackColor = False
         '
@@ -379,11 +380,11 @@ Partial Class Form1
         Me.Button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button20.ForeColor = System.Drawing.Color.White
-        Me.Button20.Location = New System.Drawing.Point(455, 200)
+        Me.Button20.Location = New System.Drawing.Point(21, 223)
         Me.Button20.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button20.Name = "Button20"
         Me.Button20.Size = New System.Drawing.Size(125, 28)
-        Me.Button20.TabIndex = 19
+        Me.Button20.TabIndex = 18
         Me.Button20.Text = "黑屏（非顶置）"
         Me.Button20.UseVisualStyleBackColor = False
         '
@@ -400,7 +401,7 @@ Partial Class Form1
         Me.Button21.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(30, 30)
-        Me.Button21.TabIndex = 20
+        Me.Button21.TabIndex = 0
         Me.Button21.TabStop = False
         Me.Button21.Text = "-"
         Me.Button21.UseVisualStyleBackColor = False
@@ -413,11 +414,11 @@ Partial Class Form1
         Me.Button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button22.ForeColor = System.Drawing.Color.White
-        Me.Button22.Location = New System.Drawing.Point(21, 246)
+        Me.Button22.Location = New System.Drawing.Point(165, 223)
         Me.Button22.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(125, 28)
-        Me.Button22.TabIndex = 21
+        Me.Button22.TabIndex = 19
         Me.Button22.Text = "增加音量"
         Me.Button22.UseVisualStyleBackColor = False
         '
@@ -429,11 +430,11 @@ Partial Class Form1
         Me.Button23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button23.ForeColor = System.Drawing.Color.White
-        Me.Button23.Location = New System.Drawing.Point(165, 246)
+        Me.Button23.Location = New System.Drawing.Point(309, 223)
         Me.Button23.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(125, 28)
-        Me.Button23.TabIndex = 22
+        Me.Button23.TabIndex = 20
         Me.Button23.Text = "减小音量"
         Me.Button23.UseVisualStyleBackColor = False
         '
@@ -445,13 +446,29 @@ Partial Class Form1
         Me.Button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button24.ForeColor = System.Drawing.Color.White
-        Me.Button24.Location = New System.Drawing.Point(310, 246)
+        Me.Button24.Location = New System.Drawing.Point(454, 223)
         Me.Button24.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(125, 28)
-        Me.Button24.TabIndex = 23
+        Me.Button24.TabIndex = 21
         Me.Button24.Text = "静音或非静音"
         Me.Button24.UseVisualStyleBackColor = False
+        '
+        'Button25
+        '
+        Me.Button25.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button25.FlatAppearance.BorderColor = System.Drawing.Color.DimGray
+        Me.Button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.Button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button25.ForeColor = System.Drawing.Color.White
+        Me.Button25.Location = New System.Drawing.Point(21, 137)
+        Me.Button25.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
+        Me.Button25.Name = "Button25"
+        Me.Button25.Size = New System.Drawing.Size(125, 28)
+        Me.Button25.TabIndex = 10
+        Me.Button25.Text = "假关机(联想)"
+        Me.Button25.UseVisualStyleBackColor = False
         '
         'Form1
         '
@@ -461,6 +478,7 @@ Partial Class Form1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(640, 383)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Button25)
         Me.Controls.Add(Me.Button24)
         Me.Controls.Add(Me.Button23)
         Me.Controls.Add(Me.Button22)
@@ -530,5 +548,6 @@ Partial Class Form1
     Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Button23 As System.Windows.Forms.Button
     Friend WithEvents Button24 As System.Windows.Forms.Button
+    Friend WithEvents Button25 As System.Windows.Forms.Button
 
 End Class

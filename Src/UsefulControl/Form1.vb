@@ -207,6 +207,12 @@ Public Class Form1
             Me.Button24.FlatAppearance.MouseDownBackColor = Color.Gray
             Me.Button24.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64)
 
+            Me.Button25.BackColor = Color.Black
+            Me.Button25.ForeColor = Color.White
+            Me.Button25.FlatAppearance.BorderColor = Color.Black
+            Me.Button25.FlatAppearance.MouseDownBackColor = Color.Gray
+            Me.Button25.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64)
+
             Me.Opacity = 0.75
 
             BootForm.EnableDarkModeForWindow(Me.Handle, True)
@@ -355,6 +361,12 @@ Public Class Form1
             Me.Button24.FlatAppearance.MouseDownBackColor = Color.Gray
             Me.Button24.FlatAppearance.MouseOverBackColor = Color.LightGray
 
+            Me.Button25.BackColor = Color.Gainsboro
+            Me.Button25.ForeColor = Color.Black
+            Me.Button25.FlatAppearance.BorderColor = Color.Gainsboro
+            Me.Button25.FlatAppearance.MouseDownBackColor = Color.Gray
+            Me.Button25.FlatAppearance.MouseOverBackColor = Color.LightGray
+
             Me.BackColor = Color.White
             Me.Opacity = 0.8
             Me.ForeColor = Color.Black
@@ -370,8 +382,11 @@ Public Class Form1
     Public CurState As Integer
     Public MovedV As Integer
     Public UseMoveV As Integer
-    Public NavTargetNames(29) As String
-    Public DocTargetNames(78) As String
+    Public NavTargetNames(30) As String
+    Public DocTargetNames(96) As String
+
+    Public CloseAppThread As New System.Threading.Thread(AddressOf CloseApp)
+    Delegate Sub MyBut(ByVal StateText As String)
     'API移动窗体
     Declare Function ReleaseCapture Lib "user32" Alias "ReleaseCapture" () As Boolean
     Const SC_MOVE = &HF010&
@@ -418,6 +433,7 @@ Public Class Form1
         NavTargetNames(27) = "PincoMirror"
         NavTargetNames(28) = "SeewoService"
         NavTargetNames(29) = "SeewoLauncher"
+        NavTargetNames(30) = "CountDownControl"
 
         DocTargetNames(0) = "WINWORD"
         DocTargetNames(1) = "EXCEL"
@@ -427,105 +443,95 @@ Public Class Form1
         DocTargetNames(5) = "wpp"
         DocTargetNames(6) = "wpspdf"
         DocTargetNames(7) = "wpsoffice"
-        DocTargetNames(8) = "msedge"
-        DocTargetNames(9) = "chrome"
-        DocTargetNames(10) = "firefox"
+        DocTargetNames(8) = "wpspic"
+        DocTargetNames(9) = "Wechat"
+        DocTargetNames(10) = "QQ"
         DocTargetNames(11) = "EasiNote"
         DocTargetNames(12) = "EasiCamera"
-        DocTargetNames(13) = "Wechat"
-        DocTargetNames(14) = "db"
-        DocTargetNames(15) = "Cbox"
-        DocTargetNames(16) = "qyplayer"
-        DocTargetNames(17) = "QQLive"
-        DocTargetNames(18) = "kugou"
-        DocTargetNames(19) = "kuwomusic"
-        DocTargetNames(20) = "wpspic"
-        DocTargetNames(21) = "iexplore"
-        DocTargetNames(22) = "PotPlayer"
-        DocTargetNames(23) = "PotPlayerMini"
-        DocTargetNames(24) = "PhotosApp"
-        DocTargetNames(25) = "PhotosService"
-        DocTargetNames(26) = "Microsoft.Photos"
-        DocTargetNames(27) = "Microsoft.Media.Player"
-        DocTargetNames(28) = "Groove"
-        DocTargetNames(29) = "WindowsCamera"
-        DocTargetNames(30) = "SoundRec"
-        DocTargetNames(31) = "CalculatorApp"
-        DocTargetNames(32) = "calc"
-        DocTargetNames(33) = "notepad"
-        DocTargetNames(34) = "rundll32"
-        DocTargetNames(35) = "dllhost"
-        DocTargetNames(36) = "mspaint"
-        DocTargetNames(37) = "wmplayer"
-        DocTargetNames(38) = "Video.UI"
-        DocTargetNames(39) = "SnippingTool"
-        DocTargetNames(40) = "PotPlayerMini64"
-        DocTargetNames(41) = "360chrome"
-        DocTargetNames(42) = "360se"
-        DocTargetNames(43) = "winrar"
-        DocTargetNames(44) = "winzip"
-        DocTargetNames(45) = "7z"
-        DocTargetNames(46) = "7zFM"
-        DocTargetNames(47) = "bandzip"
-        DocTargetNames(48) = "theworld"
-        DocTargetNames(49) = "liebao"
-        DocTargetNames(50) = "qingniao"
-        DocTargetNames(51) = "Twinkstar"
-        DocTargetNames(52) = "UCBrowser"
-        DocTargetNames(53) = "UCService"
-        DocTargetNames(54) = "2345Explorer"
-        DocTargetNames(55) = "quark"
-        DocTargetNames(56) = "iexplore"
-        DocTargetNames(57) = "QQBrowser"
-        DocTargetNames(58) = "Chromium"
-        DocTargetNames(59) = "SeewoBrowser"
-        DocTargetNames(60) = "360chromex"
-        DocTargetNames(61) = "360aibrowser"
+        DocTargetNames(13) = "NimoNavigator"
+        DocTargetNames(14) = "CamShow"
+        DocTargetNames(15) = "ScreenBoard"
+        DocTargetNames(16) = "Nimo"
+        DocTargetNames(17) = "HiteCamera"
+        DocTargetNames(18) = "HitePai"
+        DocTargetNames(19) = "Lenovo.Smart.BoardTools"
+        DocTargetNames(20) = "Lenovo.Smart.SubjectTools"
+        DocTargetNames(21) = "SmartClass"
+        DocTargetNames(22) = "SmartClassPlayer"
+        DocTargetNames(23) = "SmartClassService"
+        DocTargetNames(24) = "SmartClassShell"
+        DocTargetNames(25) = "SmartRecorder"
+        DocTargetNames(26) = "BlackboardWriting"
+        DocTargetNames(27) = "DesktopDraw"
+        DocTargetNames(28) = "HTDCom"
+        DocTargetNames(29) = "ScreenRecord"
+        DocTargetNames(30) = "VSKY"
+        DocTargetNames(31) = "db"
+        DocTargetNames(32) = "msedge"
+        DocTargetNames(33) = "chrome"
+        DocTargetNames(34) = "firefox"
+        DocTargetNames(35) = "360chrome"
+        DocTargetNames(36) = "360se"
+        DocTargetNames(37) = "theworld"
+        DocTargetNames(38) = "liebao"
+        DocTargetNames(39) = "qingniao"
+        DocTargetNames(40) = "Twinkstar"
+        DocTargetNames(41) = "UCBrowser"
+        DocTargetNames(42) = "UCService"
+        DocTargetNames(43) = "2345Explorer"
+        DocTargetNames(44) = "quark"
+        DocTargetNames(45) = "iexplore"
+        DocTargetNames(46) = "QQBrowser"
+        DocTargetNames(47) = "Chromium"
+        DocTargetNames(48) = "SeewoBrowser"
+        DocTargetNames(49) = "360chromex"
+        DocTargetNames(50) = "360aibrowser"
+        DocTargetNames(51) = "SLBrowser"
+        DocTargetNames(52) = "SLB"
+        DocTargetNames(53) = "SogouExplorer"
+        DocTargetNames(54) = "MicrosoftEdge"
+        DocTargetNames(55) = "PotPlayer"
+        DocTargetNames(56) = "PotPlayerMini"
+        DocTargetNames(57) = "PotPlayerMini64"
+        DocTargetNames(58) = "Microsoft.Media.Player"
+        DocTargetNames(59) = "Groove"
+        DocTargetNames(60) = "wmplayer"
+        DocTargetNames(61) = "Video.UI"
         DocTargetNames(62) = "QQPlayer"
         DocTargetNames(63) = "baofeng"
-        DocTargetNames(64) = "SLBrowser"
-        DocTargetNames(65) = "SLB"
-        DocTargetNames(66) = "QQ"
-        DocTargetNames(67) = "StormPlayer"
-        DocTargetNames(68) = "SogouExplorer"
-        DocTargetNames(69) = "NimoNavigator"
-        DocTargetNames(70) = "CamShow"
-        DocTargetNames(71) = "ScreenBoard"
-        DocTargetNames(72) = "Nimo"
-        DocTargetNames(73) = "HiteCamera"
-        DocTargetNames(74) = "HitePai"
-        DocTargetNames(75) = "nanazip"
-        DocTargetNames(76) = "haozip"
-        DocTargetNames(77) = "360zip"
-        DocTargetNames(78) = "MicrosoftEdge"
-        '支持关闭程序关键字列表
-        'WINWORD,EXCEL,POWERPNT,
-        'wps,et,wpp,
-        'wpspdf,wpsoffice,msedge,
-        'chrome,firefox,EasiNote,
-        'EasiCamera,Wechat,db,
-        'Cbox,qyplayer,QQLive,
-        'kugou,kuwomusic,wpspic,
-        'iexplore,PotPlayer,PotPlayerMini,
-        'PhotosApp,PhotosService,Microsoft.Photos,
-        'Microsoft.Media.Player,
-        'Groove,WindowsCamera,SoundRec,
-        'CalculatorApp,calc,notepad,
-        'rundll32,dllhost,mspaint,
-        'wmplayer,Video.UI,SnippingTool,
-        'PotPlayerMini64,360chrome,360se,
-        'winrar,winzip,7z,
-        '7zFM,bandzip,theworld,
-        'liebao,qingniao,Twinkstar,
-        'UCBrowser,UCService,2345Explorer,
-        'quark,iexplore,QQBrowser,
-        'Chromium,SeewoBrowser,360chromex,
-        '360aibrowser,QQPlayer,baofeng,
-        'SLBrowser,SLB,QQ,
-        'StormPlayer,SogouExplorer,NimoNavigator,
-        'CamShow,ScreenBoard,Nimo,
-        'HiteCamera,HitePai,nanazip,
-        'haozip,360zip,MicrosoftEdge
+        DocTargetNames(64) = "Cbox"
+        DocTargetNames(65) = "qyplayer"
+        DocTargetNames(66) = "QQLive"
+        DocTargetNames(67) = "kugou"
+        DocTargetNames(68) = "kuwomusic"
+        DocTargetNames(69) = "StormPlayer"
+        DocTargetNames(70) = "YOUKU"
+        DocTargetNames(71) = "YoukuNplayer"
+        DocTargetNames(72) = "AlibabaProtectCon"
+        DocTargetNames(73) = "cloudmusic"
+        DocTargetNames(74) = "PhotosApp"
+        DocTargetNames(75) = "PhotosService"
+        DocTargetNames(76) = "Microsoft.Photos"
+        DocTargetNames(77) = "rundll32"
+        DocTargetNames(78) = "dllhost"
+        DocTargetNames(79) = "WindowsCamera"
+        DocTargetNames(80) = "SoundRec"
+        DocTargetNames(81) = "SoundRecorder"
+        DocTargetNames(82) = "CalculatorApp"
+        DocTargetNames(83) = "calc"
+        DocTargetNames(84) = "notepad"
+        DocTargetNames(85) = "mspaint"
+        DocTargetNames(86) = "SnippingTool"
+        DocTargetNames(87) = "ScreenSketch"
+        DocTargetNames(88) = "winrar"
+        DocTargetNames(89) = "winzip"
+        DocTargetNames(90) = "7z"
+        DocTargetNames(91) = "7zFM"
+        DocTargetNames(92) = "bandzip"
+        DocTargetNames(93) = "nanazip"
+        DocTargetNames(94) = "haozip"
+        DocTargetNames(95) = "360zip"
+        DocTargetNames(96) = "kuaizip"
 
         UseMoveV = 0
         MovedV = 0
@@ -674,7 +680,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button6_Click(sender As System.Object, e As System.EventArgs) Handles Button6.Click
-        Shell("powershell ""[Void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms');[System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false);""", AppWinStyle.Hide)
+        'Shell("powershell ""[Void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms');[System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false);""", AppWinStyle.Hide)
+        System.Windows.Forms.Application.SetSuspendState("Suspend", False, False)
     End Sub
 
     Private Sub Button7_Click(sender As System.Object, e As System.EventArgs) Handles Button7.Click
@@ -734,6 +741,7 @@ Public Class Form1
         End Try
 
         FakeShutdownForm.Timer1.Enabled = True
+        FakeShutdownForm.FakeMode = 0
         FakeShutdownForm.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
@@ -778,42 +786,47 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button14_Click(sender As System.Object, e As System.EventArgs) Handles Button14.Click
-        If MessageBox.Show("确定关闭课件吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
-            Button14.Text = "正在关闭课件"
-            MessageBox.Show("正在关闭课件，在按钮""正在关闭课件""文字变化之前，请不要再点击本按钮，以免重复关闭。期间出现卡顿属于正常现象。关闭程序的关键字请查看设置窗口里的说明。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Me.Hide()
-            Try
-                For Each TargetNamea As String In DocTargetNames
-                    Shell("taskkill.exe /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                    Shell("taskkill.exe /im " & TargetNamea & "*", AppWinStyle.Hide)
-                    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                    Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide, True)
-                Next
+    Sub SetButText(ByVal StateText As String)
+        Button14.Text = StateText
+    End Sub
 
-                For Each TargetName As String In DocTargetNames
-                    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
-                    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
-                    Dim TargetPath As String '存储进程路径为文本型
-                    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
-                        For i = 0 To TargetKill.Length - 1
-                            TargetPath = TargetKill(i).MainModule.FileName
-                            TargetKill(i).Kill()
-                        Next
-                        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
-                        '   Exit Sub
-                    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
-                        TargetKill(0).Kill()
-                    End If
-                    'Me.Dispose(1) '关闭自身进程
-                Next
-            Catch ex As Exception
-            End Try
-            Button14.Text = "一键关闭课件"
-            If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
-                Me.Show()
-            Else
-                End
+    Sub CloseApp()
+        Me.Invoke(New MyBut(AddressOf SetButText), "正在关闭课件")
+        'Button1.Enabled = True
+        'MessageBox.Show("正在关闭课件，在按钮""正在关闭""文字变化之前，请不要再点击关闭按钮，以免重复关闭。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            For Each TargetNamea As String In DocTargetNames
+                Shell("taskkill.exe /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                Shell("taskkill.exe /im " & TargetNamea & "*", AppWinStyle.Hide)
+                Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide, True)
+            Next
+
+            For Each TargetName As String In DocTargetNames
+                'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                Dim TargetPath As String '存储进程路径为文本型
+                If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                    For i = 0 To TargetKill.Length - 1
+                        TargetPath = TargetKill(i).MainModule.FileName
+                        TargetKill(i).Kill()
+                    Next
+                    'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                    '   Exit Sub
+                ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                    TargetKill(0).Kill()
+                End If
+                'Me.Dispose(1) '关闭自身进程
+            Next
+        Catch ex As Exception
+        End Try
+        Me.Invoke(New MyBut(AddressOf SetButText), "一键关闭课件")
+    End Sub
+
+    Private Sub Button14_Click(sender As System.Object, e As System.EventArgs) Handles Button14.Click
+        If Not Button14.Text = "正在关闭课件" Then
+            If MessageBox.Show("确定关闭课件吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                CloseAppThread.Start()
             End If
         End If
     End Sub
@@ -930,5 +943,44 @@ Public Class Form1
 
     Private Sub Button24_Click(sender As System.Object, e As System.EventArgs) Handles Button24.Click
         SendMessageW(Me.Handle, WM_APPCOMMAND, Me.Handle, New IntPtr(mute))
+    End Sub
+
+    Private Sub Button25_Click(sender As System.Object, e As System.EventArgs) Handles Button25.Click
+        Me.Hide()
+        Try
+            For Each TargetNamea As String In NavTargetNames
+                Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                Shell("taskkill.exe /f /im *" & TargetNamea & "*", AppWinStyle.Hide)
+            Next
+
+            For Each TargetName As String In NavTargetNames
+                'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                Dim TargetPath As String '存储进程路径为文本型
+                If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                    For i = 0 To TargetKill.Length - 1
+                        TargetPath = TargetKill(i).MainModule.FileName
+                        TargetKill(i).Kill()
+                    Next
+                    'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                    '   Exit Sub
+                ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                    TargetKill(0).Kill()
+                End If
+                'Me.Dispose(1) '关闭自身进程
+            Next
+        Catch ex As Exception
+        End Try
+
+        FakeShutdownForm.Timer1.Enabled = True
+        FakeShutdownForm.FakeMode = 1
+        FakeShutdownForm.ShowDialog()
+        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+            Me.Close()
+            BootForm.WindowState = FormWindowState.Normal
+            BootForm.Show()
+        Else
+            End
+        End If
     End Sub
 End Class

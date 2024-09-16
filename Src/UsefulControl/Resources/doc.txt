@@ -1,0 +1,84 @@
+一、支持参数
+  使用 /nosaveprofile 以安全模式启动（不保存配置），仅支持显示在左侧
+  使用 /leftbar 以工具栏形式启动显示在屏幕左侧 
+  使用 /rightbar 以工具栏形式启动显示在屏幕右侧 
+  使用 /topbar 以工具栏形式启动显示在屏幕顶部
+  使用 /bottombar 以工具栏形式启动显示在屏幕底部
+  使用 /lefttopbar 以工具栏形式启动显示在屏幕左上角 
+  使用 /righttopbar 以工具栏形式启动显示在屏幕右上角 
+  使用 /leftbottombar 以工具栏形式启动显示在屏幕左下角 
+  使用 /rightbottombar 以工具栏形式启动显示在屏幕右下角 
+
+  使用 /closescr 参数关屏幕并启动黑屏。
+  使用 /blankscr 参数启动黑屏。
+  使用 /fakeshutdown 参数启动伪关机界面（希沃）。
+  使用 /fakeshutdownlenovo 参数启动伪关机界面（联想）。
+  使用 /locktime 参数启动时钟锁屏。
+  使用 /locktime2 参数启动时钟锁屏2。
+  使用 /pboard 参数启动公告栏。
+  使用 /pboard2 参数启动公告栏2。
+  使用 /iboard 参数启动图片展示。
+  使用 /blacku 参数启动非顶置黑屏。
+  使用 /volup 参数音量一次增加2。
+  使用 /voldown 参数音量一次减小2。
+  使用 /volmute 参数静音或取消静音。
+
+      部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，为单一用户设置的
+  策略优先级高于针对所有用户设置的策略（需要以管理员身份启动本程序以应用针对所有用户设
+  置的策略）。
+二、希沃纯净模式关闭程序
+  TimeControl.exe, PowerControl.exe, TDocKiller.exe, 
+  IBoard.exe, LockTime.exe, PBoard.exe, 
+  LockTime2.exe, PBoard2.exe, TimeControl64.exe, 
+  PowerControl64.exe, TDocKiller64.exe, IBoard64.exe, 
+  LockTime64.exe, PBoard64.exe, LockTime264.exe, PBoard264.exe, 
+  PPTService.exe, SeewoCore*.exe, SeewoFreezeUpdateAssist.exe, 
+  proxyLayerService.exe, ResidentSideBar.Defender.exe, ResidentSideBar.exe, 
+  LastContainer.exe, LastContainerDaemon.exe, EasiRecorder.exe, 
+  seewoPincoTeacher.exe, seewoPincoTeacherService.exe, PincoMirror.exe, 
+  SeewoService*.exe, SeewoLauncher.exe,CountDownControl.exe
+三、一键关闭课件支持关闭的程序
+  目前支持关闭包括以下关键字名称的程序：
+  1.Microsoft Office:
+    WINWORD,EXCEL,POWERPNT
+  2.WPS:
+    wps,et,wpp,wpspdf,wpsoffice,wpspic
+  3.浏览器（Chrome，Chromium，Edge，Firefox，360系列，2345系列，心愿浏览器，UC浏览器，
+    夸克浏览器，IE，QQ浏览器，希沃浏览器，联想浏览器，搜狗浏览器）
+    msedge,chrome,firefox,360chrome,360se,theworld,liebao,qingniao,Twinkstar,UCBrowser,
+    UCService,2345Explorer,quark,iexplore,QQBrowser,Chromium,SeewoBrowser,360chromex,
+    360aibrowser,SLBrowser,SLB,SogouExplorer,MicrosoftEdge
+  4.播放器以及影音应用
+  (1)PotPlayer
+    PotPlayer,PotPlayerMini,PotPlayerMini64
+  (2)系统的自带播放器
+    Microsoft.Media.Player,Groove,wmplayer,Video.UI
+  (3)QQ影音，暴风影音，央视影音，腾讯视频，酷狗，酷我，爱奇艺，优酷
+    QQPlayer,baofeng,Cbox,qyplayer,QQLive,kugou,kuwomusic,StormPlayer,YOUKU,YoukuNplayer,
+    AlibabaProtectCon,cloudmusic
+  5.教学软件
+  (1)希沃
+    EasiNote,EasiCamera
+  (2)嘉宏高拍仪
+    NimoNavigator,CamShow,ScreenBoard,Nimo
+  (3)鸿合
+    HiteCamera,HitePai
+  (4)联想
+    Lenovo.Smart.BoardTools,Lenovo.Smart.SubjectTools,SmartClass,SmartClassPlayer,
+    SmartClassService,SmartClassShell,SmartRecorder,BlackboardWriting,DesktopDraw,HTDCom,
+    ScreenRecord,VSKY
+  (5)外研社电子课本
+    db
+  6.通讯工具
+    Wechat,QQ
+  7.工具类
+  (1)照片查看器
+    PhotosApp,PhotosService,Microsoft.Photos,rundll32,dllhost
+  (2)系统工具（相机，录音机，计算器，记事本，画图，截图工具）
+    WindowsCamera,SoundRec,SoundRecorder,CalculatorApp,calc,notepad,mspaint,SnippingTool,
+    ScreenSketch
+  (3)压缩软件（WinRar，WinZip，7z，BandZip，好压，360压缩，快压）
+    winrar,winzip,7z,7zFM,bandzip,nanazip,haozip,360zip,kuaizip
+四、特别说明
+       关闭屏幕功能可能导致希沃无法获取屏幕信号而不是同时关闭显示器，有可能会触发希沃5分钟
+   无信号自动关闭整机机制，除非切换到安卓模式或者进入工厂菜单设置。

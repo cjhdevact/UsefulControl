@@ -59,5 +59,102 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  查找类似 一、支持参数
+        '''  使用 /nosaveprofile 以安全模式启动（不保存配置），仅支持显示在左侧
+        '''  使用 /leftbar 以工具栏形式启动显示在屏幕左侧 
+        '''  使用 /rightbar 以工具栏形式启动显示在屏幕右侧 
+        '''  使用 /topbar 以工具栏形式启动显示在屏幕顶部
+        '''  使用 /bottombar 以工具栏形式启动显示在屏幕底部
+        '''  使用 /lefttopbar 以工具栏形式启动显示在屏幕左上角 
+        '''  使用 /righttopbar 以工具栏形式启动显示在屏幕右上角 
+        '''  使用 /leftbottombar 以工具栏形式启动显示在屏幕左下角 
+        '''  使用 /rightbottombar 以工具栏形式启动显示在屏幕右下角 
+        '''
+        '''  使用 /closescr 参数关屏幕并启动黑屏。
+        '''  使用 /blankscr 参数启动黑屏。
+        '''  使用 /fakeshutdown 参数启动伪关机界面（希沃）。
+        '''  使用 /fakeshutdownlenovo 参数启动伪关机界面（联想）。
+        '''  使用 /locktime 参数启动时钟锁屏。
+        '''  使用 /locktime2 参数启动时钟锁 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property DocText() As String
+            Get
+                Return ResourceManager.GetString("DocText", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似                     GNU GENERAL PUBLIC LICENSE
+        '''                       Version 3, 29 June 2007
+        '''
+        ''' Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
+        ''' Everyone is permitted to copy and distribute verbatim copies
+        ''' of this license document, but changing it is not allowed.
+        '''
+        '''                            Preamble
+        '''
+        '''  The GNU General Public License is a free, copyleft license for
+        '''software and other kinds of works.
+        '''
+        '''  The licenses for most software and other practical works are designed
+        '''to [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property GPL3() As String
+            Get
+                Return ResourceManager.GetString("GPL3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property lenovoshut() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("lenovoshut", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property seewodialog_btn_left_normal() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("seewodialog_btn_left_normal", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property seewodialog_btn_left_pressed() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("seewodialog_btn_left_pressed", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property seewodialog_btn_right_normal() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("seewodialog_btn_right_normal", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property seewodialog_btn_right_pressed() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("seewodialog_btn_right_pressed", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
     End Module
 End Namespace

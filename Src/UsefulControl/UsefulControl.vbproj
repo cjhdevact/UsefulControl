@@ -316,6 +316,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\appicon.ico" />
+    <None Include="Resources\lenovoshut.png" />
+    <None Include="Resources\seewodialog_btn_left_normal.png" />
+    <None Include="Resources\seewodialog_btn_right_pressed.png" />
+    <None Include="Resources\seewodialog_btn_right_normal.png" />
+    <None Include="Resources\seewodialog_btn_left_pressed.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

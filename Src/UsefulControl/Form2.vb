@@ -137,7 +137,7 @@ errcode:
         End If
 
         Dim disi As Graphics = Me.CreateGraphics()
-        TextBox2.Height = disi.DpiX * 0.01 * 113
+        'TextBox2.Height = disi.DpiX * 0.01 * 113
         Label8.Width = Me.Width - disi.DpiX * 0.01 * 54
 
         Call formatcolorcurset()
@@ -178,8 +178,8 @@ errcode:
             Me.Button4.ForeColor = Color.White
             Me.TextBox1.BackColor = Color.FromArgb(32, 32, 32)
             Me.TextBox1.ForeColor = Color.White
-            Me.TextBox2.BackColor = Color.FromArgb(32, 32, 32)
-            Me.TextBox2.ForeColor = Color.White
+            'Me.TextBox2.BackColor = Color.FromArgb(32, 32, 32)
+            'Me.TextBox2.ForeColor = Color.White
             Me.ComboBox1.BackColor = Color.FromArgb(32, 32, 32)
             Me.ComboBox1.ForeColor = Color.White
             Me.ComboBox2.BackColor = Color.FromArgb(32, 32, 32)
@@ -200,8 +200,8 @@ errcode:
             Me.Button4.ForeColor = Color.Black
             Me.TextBox1.BackColor = Color.White
             Me.TextBox1.ForeColor = Color.Black
-            Me.TextBox2.BackColor = Color.White
-            Me.TextBox2.ForeColor = Color.Black
+            'Me.TextBox2.BackColor = Color.White
+            'Me.TextBox2.ForeColor = Color.Black
             Me.ComboBox1.BackColor = Color.White
             Me.ComboBox1.ForeColor = Color.Black
             Me.ComboBox2.BackColor = Color.White
@@ -271,6 +271,11 @@ errcode:
     End Sub
 
     Private Sub LinkLabel4_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+        'GPLForm.TextBox1.ScrollBars = ScrollBars.Both
+        GPLForm.TextBox1.Text = My.Resources.GPL3
+        'GPLForm.TextBox1.WordWrap = False
+        'GPLForm.TextBox1.Font = New System.Drawing.Font("宋体", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        GPLForm.Text = "GNU General Public License 3"
         GPLForm.ShowDialog()
     End Sub
 
@@ -366,5 +371,21 @@ errcode:
             Call Me.formatcolorcurset()
             Call BootForm.formatcolorcur()
         End If
+    End Sub
+
+    Private Sub Button5_Click(sender As System.Object, e As System.EventArgs) Handles Button5.Click
+        If (MessageBox.Show("确定重启实用工具集合小工具吗？", "实用工具集合小工具", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes) Then
+            System.Diagnostics.Process.Start(Application.ExecutablePath, Command)
+            End
+        End If
+    End Sub
+
+    Private Sub LinkLabel3_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        'GPLForm.TextBox1.ScrollBars = ScrollBars.Vertical
+        GPLForm.TextBox1.Text = My.Resources.DocText
+        'GPLForm.TextBox1.WordWrap = True
+        'GPLForm.TextBox1.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        GPLForm.Text = "帮助"
+        GPLForm.ShowDialog()
     End Sub
 End Class

@@ -121,7 +121,7 @@
   <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAACCpJREFUaEPtmMlvW9cVxr1oE6SJG3vVZZwsCxTRf1D/AQXiZXY1gq6ySYAYGbyo
+        wQAADsEBuJFr7QAACCpJREFUaEPtmMlvW9cVxr1oE6SJG3vVZZwsCxTRf1D/AQXiZXY1gq6ySYAYGbyo
         FTdO4VGybA3UwEdSnMTpkSIlilLkpylLm20WdT2FRpCkTQOLi4zw4p6c79x7Hx8lSqJlGVABH+DDEyQ+
         8Xc+fu/cIx14Wk9rH5VbXT1arK26pYXVhju/su7WVggqzC0389Xlen52yctWll8zL99f5dbWeorzq4ob
         IMidW1GF6rJieDRA/DXlZz3FomzZO2pu2z/FTvcbcOu6yleXWAxeXaIcg4tmrqnszDXH3LZ/qjC34llw
@@ -158,77 +158,6 @@
         nfa0gStjk0d58mD6EOefLo9G6dxA6P+nAdTAeOwYw3uc//pAKNrkg0ydPPm+vNET0bvvdPcf66f1tLaq
         Awd+AUwXw41acTfBAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="TextBox2.Text" xml:space="preserve">
-    <value>说明：
-一、支持参数
-使用 /nosaveprofile 以安全模式启动（不保存配置），仅支持显示在左侧
-使用 /leftbar 以工具栏形式启动显示在屏幕左侧 
-使用 /rightbar 以工具栏形式启动显示在屏幕右侧 
-使用 /topbar 以工具栏形式启动显示在屏幕顶部
-使用 /bottombar 以工具栏形式启动显示在屏幕底部
-使用 /lefttopbar 以工具栏形式启动显示在屏幕左上角 
-使用 /righttopbar 以工具栏形式启动显示在屏幕右上角 
-使用 /leftbottombar 以工具栏形式启动显示在屏幕左下角 
-使用 /rightbottombar 以工具栏形式启动显示在屏幕右下角 
-
-使用 /closescr 参数关屏幕并启动黑屏。
-使用 /blankscr 参数启动黑屏。
-使用 /fakeshutdown 参数启动伪关机界面及5秒关屏。
-使用 /locktime 参数启动时钟锁屏。
-使用 /locktime2 参数启动时钟锁屏2。
-使用 /pboard 参数启动公告栏。
-使用 /pboard2 参数启动公告栏2。
-使用 /iboard 参数启动图片展示。
-使用 /blacku 参数启动非顶置黑屏。
-使用 /volup 参数音量一次增加2。
-使用 /voldown 参数音量一次减小2。
-使用 /volmute 参数静音或取消静音。
-
-部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，为单一用户设置的策略优先级高于针对所有用户设置的策略（需要以管理员身份启动本程序以应用针对所有用户设置的策略）。
-
-二、希沃纯净模式关闭程序
-TimeControl.exe, PowerControl.exe, TDocKiller.exe, 
-IBoard.exe, LockTime.exe, PBoard.exe, 
-LockTime2.exe, PBoard2.exe, TimeControl64.exe, 
-PowerControl64.exe, TDocKiller64.exe, IBoard64.exe, 
-LockTime64.exe, PBoard64.exe, LockTime264.exe, PBoard264.exe, 
-PPTService.exe, SeewoCore*.exe, SeewoFreezeUpdateAssist.exe, 
-proxyLayerService.exe, ResidentSideBar.Defender.exe, ResidentSideBar.exe, 
-LastContainer.exe, LastContainerDaemon.exe, EasiRecorder.exe, 
-seewoPincoTeacher.exe, seewoPincoTeacherService.exe, PincoMirror.exe, 
-SeewoService*.exe, SeewoLauncher.exe
-三、一键关闭课件支持关闭的程序
-目前支持关闭包括以下关键字名称的程序：
-WINWORD,EXCEL,POWERPNT,
-wps,et,wpp,
-wpspdf,wpsoffice,msedge,
-chrome,firefox,EasiNote,
-EasiCamera,Wechat,db,
-Cbox,qyplayer,QQLive,
-kugou,kuwomusic,wpspic,
-iexplore,PotPlayer,PotPlayerMini,
-PhotosApp,PhotosService,Microsoft.Photos,
-Microsoft.Media.Player,
-Groove,WindowsCamera,SoundRec,
-CalculatorApp,calc,notepad,
-rundll32,dllhost,mspaint,
-wmplayer,Video.UI,SnippingTool,
-PotPlayerMini64,360chrome,360se,
-winrar,winzip,7z,
-7zFM,bandzip,theworld,
-liebao,qingniao,Twinkstar,
-UCBrowser,UCService,2345Explorer,
-quark,iexplore,QQBrowser,
-Chromium,SeewoBrowser,360chromex,
-360aibrowser,QQPlayer,baofeng,
-SLBrowser,SLB,QQ,
-StormPlayer,SogouExplorer,NimoNavigator,
-CamShow,ScreenBoard,Nimo,
-HiteCamera,HitePai,nanazip,
-haozip,360zip,MicrosoftEdge
-四、特别说明
-关闭屏幕功能可能导致希沃无法获取屏幕信号而不是同时关闭显示器，有可能会触发希沃5分半无信号自动关闭整机机制，除非切换到安卓模式。</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -37,13 +37,13 @@ Partial Class GPLForm
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 508)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(644, 36)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(751, 36)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button1.Location = New System.Drawing.Point(546, 3)
+        Me.Button1.Location = New System.Drawing.Point(653, 3)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(95, 30)
         Me.Button1.TabIndex = 0
@@ -61,10 +61,9 @@ Partial Class GPLForm
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(644, 508)
+        Me.TextBox1.Size = New System.Drawing.Size(751, 508)
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.TabStop = False
-        Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         Me.TextBox1.WordWrap = False
         '
         'GPLForm
@@ -73,7 +72,7 @@ Partial Class GPLForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(644, 544)
+        Me.ClientSize = New System.Drawing.Size(751, 544)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))

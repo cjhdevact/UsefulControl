@@ -49,8 +49,28 @@ Public Class SeewoFakeShut
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
-
-    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
-
+    Private Sub Button1_MouseMove(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.MouseMove
+        Button1.BackgroundImage = My.Resources.seewodialog_btn_left_normal
+        Button1.ForeColor = Color.Black
+    End Sub
+    Private Sub Button1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Button1.MouseDown
+        Button1.BackgroundImage = My.Resources.seewodialog_btn_left_pressed
+        Button1.ForeColor = Color.White
+    End Sub
+    Private Sub Button1_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.MouseLeave
+        Button1.BackgroundImage = My.Resources.seewodialog_btn_left_normal
+        Button1.ForeColor = Color.Black
+    End Sub
+    Private Sub Button2_MouseMove(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.MouseMove
+        Button2.BackgroundImage = My.Resources.seewodialog_btn_right_normal
+        Button2.ForeColor = Color.Black
+    End Sub
+    Private Sub Button2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Button2.MouseDown
+        Button2.BackgroundImage = My.Resources.seewodialog_btn_right_pressed
+        Button2.ForeColor = Color.White
+    End Sub
+    Private Sub Button2_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.MouseLeave
+        Button2.BackgroundImage = My.Resources.seewodialog_btn_right_normal
+        Button2.ForeColor = Color.Black
     End Sub
 End Class
