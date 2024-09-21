@@ -162,7 +162,7 @@ errcode:
             End If
         End If
 
-        Label1.Text = "实用工具集合小工具希沃版 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2023-2024 CJH。"
+        Label1.Text = "实用工具集合小工具 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2023-2024 CJH。"
     End Sub
 
     Sub formatcolorcurset()

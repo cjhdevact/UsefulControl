@@ -385,7 +385,6 @@ Public Class Form1
     Public NavTargetNames(32) As String
     Public DocTargetNames(96) As String
 
-    Public CloseAppThread As New System.Threading.Thread(AddressOf CloseApp)
     Delegate Sub MyBut(ByVal StateText As String)
     'API移动窗体
     Declare Function ReleaseCapture Lib "user32" Alias "ReleaseCapture" () As Boolean
@@ -683,7 +682,7 @@ Public Class Form1
 
     Private Sub Button6_Click(sender As System.Object, e As System.EventArgs) Handles Button6.Click
         'Shell("powershell ""[Void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms');[System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false);""", AppWinStyle.Hide)
-        System.Windows.Forms.Application.SetSuspendState("Suspend", False, False)
+        System.Windows.Forms.Application.SetSuspendState(PowerState.Suspend, False, False)
     End Sub
 
     Private Sub Button7_Click(sender As System.Object, e As System.EventArgs) Handles Button7.Click
@@ -828,6 +827,7 @@ Public Class Form1
     Private Sub Button14_Click(sender As System.Object, e As System.EventArgs) Handles Button14.Click
         If Not Button14.Text = "正在关闭课件" Then
             If MessageBox.Show("确定关闭课件吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                Dim CloseAppThread As New System.Threading.Thread(AddressOf CloseApp)
                 CloseAppThread.Start()
             End If
         End If
@@ -835,7 +835,7 @@ Public Class Form1
 
     Private Sub Button15_Click(sender As System.Object, e As System.EventArgs) Handles Button15.Click
         Me.Hide()
-        LockTimeForm.Show()
+        LockTimeForm.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -847,7 +847,7 @@ Public Class Form1
 
     Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
         Me.Hide()
-        LockTime2Form.Show()
+        LockTime2Form.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -859,7 +859,7 @@ Public Class Form1
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
         Me.Hide()
-        PBoardForm.Show()
+        PBoardForm.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -871,7 +871,7 @@ Public Class Form1
 
     Private Sub Button18_Click(sender As System.Object, e As System.EventArgs) Handles Button18.Click
         Me.Hide()
-        PBoard2Form.Show()
+        PBoard2Form.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -883,7 +883,7 @@ Public Class Form1
 
     Private Sub Button19_Click(sender As System.Object, e As System.EventArgs) Handles Button19.Click
         Me.Hide()
-        IBoardpfrm.Show()
+        IBoardpfrm.ShowDialog()
         If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
