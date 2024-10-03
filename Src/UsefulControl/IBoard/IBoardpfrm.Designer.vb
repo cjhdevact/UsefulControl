@@ -107,7 +107,7 @@ Partial Class IBoardpfrm
         Me.CHide.Size = New System.Drawing.Size(148, 22)
         Me.CHide.Text = "隐藏(&H)"
         '
-        'IBoardpfrm
+        'pfrm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
@@ -121,10 +121,10 @@ Partial Class IBoardpfrm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "IBoardpfrm"
+        Me.Name = "pfrm"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "图片展示"
+        Me.Text = "图片展示小工具"
         Me.FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)

@@ -108,6 +108,23 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似 一、加载说明
+        '''      本程序在启动时会自动加载程序所在根目录名为 ShowImage 的图片，加载格式根据以下优先级排列
+        ''' （.png &gt; .jpg &gt; .bmp &gt; .tiff  &gt; .ico &gt; .gif），即优先加载较前的文件格式，如果在设置勾选了加载
+        '''  上一次打开的图片，则当ShowImage没有被加载时，自动加载上一次的图片。
+        '''二、功能说明
+        '''  1.双击图片展示区域可隐藏标题栏。
+        '''  2.部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，针对所有用户设置的策略优先
+        '''    级高于为单一用户设置的策略。
+        '''  3.使用 /nosaveprofile 参数启动不保存用户设置。 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property IBoardDocText() As String
+            Get
+                Return ResourceManager.GetString("IBoardDocText", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
         Friend ReadOnly Property lenovoshut() As System.Drawing.Bitmap

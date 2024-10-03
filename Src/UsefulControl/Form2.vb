@@ -83,7 +83,7 @@ Public Class Form2
                 BootForm.Timer2.Enabled = True
                 BootForm.NotifyIcon1.Visible = True
                 BootForm.NotifyIcon1.ShowBalloonTip(7000, "实用工具集合小工具", "实用工具集合小工具当前已隐藏到系统托盘，双击托盘图标或在设定的时间（" & TextBox1.Text & "秒）之后重新显示。", ToolTipIcon.Info)
-                If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+                If BootForm.ToolMode = 1 Then
                     BootForm.Hide()
                 End If
                 Form1.Hide()
@@ -94,7 +94,7 @@ Public Class Form2
                 BootForm.Timer2.Enabled = True
                 BootForm.NotifyIcon1.Visible = True
                 BootForm.NotifyIcon1.ShowBalloonTip(7000, "实用工具集合小工具", "实用工具集合小工具当前已隐藏到系统托盘，双击托盘图标或在设定的时间（" & TextBox1.Text & "分钟）之后重新显示。", ToolTipIcon.Info)
-                If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+                If BootForm.ToolMode = 1 Then
                     BootForm.Hide()
                 End If
                 Form1.Hide()
@@ -105,7 +105,7 @@ Public Class Form2
                 BootForm.Timer2.Enabled = True
                 BootForm.NotifyIcon1.Visible = True
                 BootForm.NotifyIcon1.ShowBalloonTip(7000, "实用工具集合小工具", "实用工具集合小工具当前已隐藏到系统托盘，双击托盘图标或在设定的时间（" & TextBox1.Text & "小时）之后重新显示。", ToolTipIcon.Info)
-                If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+                If BootForm.ToolMode = 1 Then
                     BootForm.Hide()
                 End If
                 Form1.Hide()
@@ -290,7 +290,7 @@ errcode:
     Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
         BootForm.NotifyIcon1.Visible = True
         BootForm.NotifyIcon1.ShowBalloonTip(7000, "实用工具集合小工具", "实用工具集合小工具当前已隐藏到系统托盘，双击托盘图标重新显示。", ToolTipIcon.Info)
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             BootForm.Hide()
         End If
         Form1.Hide()

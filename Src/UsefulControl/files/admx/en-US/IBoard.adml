@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2023-2024 CJH.  -->
+<!--  Translated by Baidu Fanyi.  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>IBoard</displayName>
+  <description>IBoard</description>
+  <resources>
+    <stringTable>
+      <string id="IBoard">IBoard</string>
+      <string id="IBoardDisbFu">Disable the customization feature of IBoard</string>
+      <string id="IBoardDisbFu_Help">This policy controls whether IBoard customization feature is disabled or enabled.
+
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.2.24101 to support this policies.</string>
+      <string id="IBoardDisbFuTip">Hide the tip of when IBoard policy enable or boot after startup in special mode (excluding safe mode)</string>
+      <string id="IBoardDisbFuTip_Help">This policy controls whether to hide or show the tip of when IBoard policy enable or boot after startup in special mode (excluding safe mode)
+
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.2.24101 to support this policies.</string>
+      <string id="IBoardNoSaveProfile">Do not save settings</string>
+      <string id="IBoardNoSaveProfile_Help">Do not save your settings to the registry.
+
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.2.24101 to support this policies.</string>
+   </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -34,9 +34,9 @@ Partial Class LockTimeForm
         Me.textbottom = New System.Windows.Forms.Button()
         Me.texttop = New System.Windows.Forms.Button()
         Me.textfull = New System.Windows.Forms.Button()
+        Me.Winb = New System.Windows.Forms.Button()
         Me.aboutb = New System.Windows.Forms.Button()
         Me.exitb = New System.Windows.Forms.Button()
-        Me.Winb = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -195,6 +195,23 @@ Partial Class LockTimeForm
         Me.textfull.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.textfull.UseVisualStyleBackColor = True
         '
+        'Winb
+        '
+        Me.Winb.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.Winb.FlatAppearance.BorderSize = 0
+        Me.Winb.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.Winb.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray
+        Me.Winb.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Winb.Image = CType(resources.GetObject("Winb.Image"), System.Drawing.Image)
+        Me.Winb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Winb.Location = New System.Drawing.Point(401, 3)
+        Me.Winb.Name = "Winb"
+        Me.Winb.Size = New System.Drawing.Size(61, 35)
+        Me.Winb.TabIndex = 11
+        Me.Winb.Text = "窗口"
+        Me.Winb.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Winb.UseVisualStyleBackColor = True
+        '
         'aboutb
         '
         Me.aboutb.FlatAppearance.BorderColor = System.Drawing.Color.Black
@@ -228,23 +245,6 @@ Partial Class LockTimeForm
         Me.exitb.Text = "退出"
         Me.exitb.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.exitb.UseVisualStyleBackColor = True
-        '
-        'Winb
-        '
-        Me.Winb.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.Winb.FlatAppearance.BorderSize = 0
-        Me.Winb.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.Winb.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray
-        Me.Winb.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Winb.Image = CType(resources.GetObject("Winb.Image"), System.Drawing.Image)
-        Me.Winb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Winb.Location = New System.Drawing.Point(401, 3)
-        Me.Winb.Name = "Winb"
-        Me.Winb.Size = New System.Drawing.Size(61, 35)
-        Me.Winb.TabIndex = 11
-        Me.Winb.Text = "窗口"
-        Me.Winb.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Winb.UseVisualStyleBackColor = True
         '
         'LockTimeForm
         '

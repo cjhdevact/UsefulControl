@@ -13,7 +13,7 @@
     </category> -->
   </categories>
   <policies>
-    <policy name="UsefulControlDisbFu" class="Both" displayName="$(string.UsefulControlDisbFu)" explainText="$(string.UsefulControlDisbFu_Help)" key="Software\CJH\Policies\UsefulControl" valueName="DisableFeatures">
+    <policy name="UsefulControlDisbFu" class="Both" displayName="$(string.UsefulControlDisbFu)" explainText="$(string.UsefulControlDisbFu_Help)" key="Software\Policies\CJH\UsefulControl" valueName="DisableFeatures">
       <parentCategory ref="UsefulControl" />
 	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -23,7 +23,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="UsefulControlDisbFuTip" class="Both" displayName="$(string.UsefulControlDisbFuTip)" explainText="$(string.UsefulControlDisbFuTip_Help)" key="Software\CJH\Policies\UsefulControl" valueName="DisableFeaturesTip">
+    <policy name="UsefulControlDisbFuTip" class="Both" displayName="$(string.UsefulControlDisbFuTip)" explainText="$(string.UsefulControlDisbFuTip_Help)" key="Software\Policies\CJH\UsefulControl" valueName="DisableFeaturesTip">
       <parentCategory ref="UsefulControl" />
 	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -33,7 +33,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-	<policy name="UsefulControlNoSaveProfile" class="Both" displayName="$(string.UsefulControlNoSaveProfile)" explainText="$(string.UsefulControlNoSaveProfile_Help)" key="Software\CJH\Policies\UsefulControl" valueName="NoSaveProfile">
+	<policy name="UsefulControlNoSaveProfile" class="Both" displayName="$(string.UsefulControlNoSaveProfile)" explainText="$(string.UsefulControlNoSaveProfile_Help)" key="Software\Policies\CJH\UsefulControl" valueName="NoSaveProfile">
       <parentCategory ref="UsefulControl" />
 	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>

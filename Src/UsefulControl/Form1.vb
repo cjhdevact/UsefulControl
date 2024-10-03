@@ -661,11 +661,11 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
-        Form2.Show()
+        Form2.ShowDialog()
     End Sub
 
     Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -744,7 +744,7 @@ Public Class Form1
         FakeShutdownForm.Timer1.Enabled = True
         FakeShutdownForm.FakeMode = 0
         FakeShutdownForm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -796,29 +796,35 @@ Public Class Form1
         'Button1.Enabled = True
         'MessageBox.Show("正在关闭课件，在按钮""正在关闭""文字变化之前，请不要再点击关闭按钮，以免重复关闭。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Try
-            For Each TargetNamea As String In DocTargetNames
-                Shell("taskkill.exe /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                Shell("taskkill.exe /im " & TargetNamea & "*", AppWinStyle.Hide)
-                Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide, True)
-            Next
-
-            For Each TargetName As String In DocTargetNames
-                'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
-                Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
-                Dim TargetPath As String '存储进程路径为文本型
-                If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
-                    For i = 0 To TargetKill.Length - 1
-                        TargetPath = TargetKill(i).MainModule.FileName
-                        TargetKill(i).Kill()
-                    Next
-                    'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
-                    '   Exit Sub
-                ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
-                    TargetKill(0).Kill()
+            'For Each TargetNamea As String In DocTargetNames
+            '    Shell("taskkill.exe /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+            '    Shell("taskkill.exe /im " & TargetNamea & "*", AppWinStyle.Hide)
+            '    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+            '    Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide, True)
+            'Next
+            For i = 0 To DocTargetNames.Length - 1
+                If i / 2 - Int(i / 2) = 0 Then
+                    Shell("taskkill.exe /f /im " & DocTargetNames(i) & "*", AppWinStyle.Hide, True)
+                Else
+                    Shell("taskkill.exe /f /im " & DocTargetNames(i) & "*", AppWinStyle.Hide)
                 End If
-                'Me.Dispose(1) '关闭自身进程
             Next
+            'For Each TargetName As String In DocTargetNames
+            '    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+            '    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+            '    Dim TargetPath As String '存储进程路径为文本型
+            '    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+            '        For i = 0 To TargetKill.Length - 1
+            '            TargetPath = TargetKill(i).MainModule.FileName
+            '            TargetKill(i).Kill()
+            '        Next
+            '        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+            '        '   Exit Sub
+            '    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+            '        TargetKill(0).Kill()
+            '    End If
+            '    'Me.Dispose(1) '关闭自身进程
+            'Next
         Catch ex As Exception
         End Try
         Me.Invoke(New MyBut(AddressOf SetButText), "一键关闭课件")
@@ -836,7 +842,7 @@ Public Class Form1
     Private Sub Button15_Click(sender As System.Object, e As System.EventArgs) Handles Button15.Click
         Me.Hide()
         LockTimeForm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -848,7 +854,7 @@ Public Class Form1
     Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
         Me.Hide()
         LockTime2Form.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -860,7 +866,7 @@ Public Class Form1
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
         Me.Hide()
         PBoardForm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -872,7 +878,7 @@ Public Class Form1
     Private Sub Button18_Click(sender As System.Object, e As System.EventArgs) Handles Button18.Click
         Me.Hide()
         PBoard2Form.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -883,8 +889,13 @@ Public Class Form1
 
     Private Sub Button19_Click(sender As System.Object, e As System.EventArgs) Handles Button19.Click
         Me.Hide()
+        If BootForm.ToolMode <> 1 Then
+            IBoardprms.Button6.Enabled = True
+            IBoardprms.Button8.Enabled = True
+            IBoardprms.Button4.Enabled = True
+        End If
         IBoardpfrm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -922,7 +933,7 @@ Public Class Form1
 
         BlackForm.TopMost = False
         BlackForm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
@@ -977,7 +988,7 @@ Public Class Form1
         FakeShutdownForm.Timer1.Enabled = True
         FakeShutdownForm.FakeMode = 1
         FakeShutdownForm.ShowDialog()
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()

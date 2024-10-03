@@ -10,15 +10,15 @@
       <string id="UsefulControlDisbFu">Disable the customization feature of UsefulControl</string>
       <string id="UsefulControlDisbFu_Help">This policy controls whether UsefulControl customization feature is disabled or enabled.
 
-Note: The content of the command line should take priority over policy settings. The policy set in user configuration takes priority over the policy set in computer configuration, and the policy in computer configuration is valid for all users. (This program needs to be launched as an administrator to apply policies in computer configuration, so it is recommended to set policies in user configuration). The Teach Documents Killer version must be at least 1.0.4.24061 to support this policies.</string>
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.7.24101 to support this policies.</string>
       <string id="UsefulControlDisbFuTip">Hide the tip of when UsefulControl policy enable or boot after startup in special mode (excluding safe mode)</string>
       <string id="UsefulControlDisbFuTip_Help">This policy controls whether to hide or show the tip of when UsefulControl policy enable or boot after startup in special mode (excluding safe mode)
 
-Note: The content of the command line should take priority over policy settings. The policy set in user configuration takes priority over the policy set in computer configuration, and the policy in computer configuration is valid for all users. (This program needs to be launched as an administrator to apply policies in computer configuration, so it is recommended to set policies in user configuration). The Teach Documents Killer version must be at least 1.0.4.24061 to support this policies.</string>
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.7.24101 to support this policies.</string>
       <string id="UsefulControlNoSaveProfile">Do not save settings</string>
       <string id="UsefulControlNoSaveProfile_Help">Do not save your settings to the registry.
 
-Note: The content of the command line should take priority over policy settings. The policy set in user configuration takes priority over the policy set in computer configuration, and the policy in computer configuration is valid for all users. (This program needs to be launched as an administrator to apply policies in computer configuration, so it is recommended to set policies in user configuration). The Teach Documents Killer version must be at least 1.0.4.24061 to support this policies.</string>
+Note: The content of the command line should take priority over policy settings. The policy set in computer configuration takes priority over the policy set in user configuration, and the policy in computer configuration is valid for all users. The Teach Documents Killer version must be at least 1.0.7.24101 to support this policies.</string>
    </stringTable>
   </resources>
 </policyDefinitionResources>

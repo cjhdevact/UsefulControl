@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2023-2024 CJH.  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>图片展示小工具</displayName>
+  <description>图片展示小工具</description>
+  <resources>
+    <stringTable>
+      <string id="IBoard">图片展示小工具</string>
+      <string id="IBoardDisbFu">禁用图片展示小工具的自定义功能</string>
+      <string id="IBoardDisbFu_Help">此策略控制图片展示小工具自定义功能是否被禁用。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。图片展示小工具版本须在1.0.2.24101以上才支持本策略。</string>
+      <string id="IBoardDisbFuTip">隐藏图片展示小工具应用策略或以特殊模式（安全模式除外）启动后的横幅提示</string>
+      <string id="IBoardDisbFuTip_Help">此策略控制图片展示小工具应用策略或以特殊模式（安全模式除外）启动后的横幅提示是否显示。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。图片展示小工具版本须在1.0.2.24101以上才支持本策略。</string>
+      <string id="IBoardNoSaveProfile">不保存设置</string>
+      <string id="IBoardNoSaveProfile_Help">不将你的设置保存到注册表。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。图片展示小工具版本须在1.0.2.24101以上才支持本策略。</string>
+   </stringTable>
+  </resources>
+</policyDefinitionResources>

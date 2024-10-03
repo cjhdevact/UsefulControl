@@ -87,6 +87,9 @@ Public Class BootForm
     Public DisbFuState As Integer
     Public ShowModeTips As Integer
 
+    Public CurCommand() As String
+    Public ToolMode As Integer
+
     Sub disbfu()
         DisbFuState = 1
         Form2.Label8.Text = "部分功能由于被管理员禁用而无法使用。"
@@ -100,6 +103,7 @@ Public Class BootForm
     End Sub
 
     Private Sub BootForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        CurCommand = Split(Command.ToLower, " ")
         '////////////////////////////////////////////////////////////////////////////////////
         '//
         '//  禁用功能策略注册表读取
@@ -114,7 +118,7 @@ Public Class BootForm
         Dim unsavefut As Integer = 0
         Try
 
-            Dim plkeycr As RegistryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\CJH\Policies\UsefulControl", True)
+            Dim plkeycr As RegistryKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\Policies\CJH\UsefulControl", True)
 
             Dim disfucrt As Integer = -1
             If (Not plkeycr Is Nothing) Then
@@ -161,7 +165,7 @@ Public Class BootForm
         End Try
 
         Try
-            Dim plkey As RegistryKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\CJH\Policies\UsefulControl", True)
+            Dim plkey As RegistryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\Policies\CJH\UsefulControl", True)
             Dim disfu As Integer
 
             If cdisbfut = 0 Then
@@ -211,14 +215,16 @@ Public Class BootForm
         End Try
 
         Try
-            If Command().ToLower = "/nosaveprofile" Then
-                If DisbFuState = 1 Then
-                    Form2.Label8.Text = "当前你的更改将不会被保存。部分功能已被禁用。"
-                Else
-                    Form2.Label8.Text = "当前你的更改将不会被保存。"
+            For i = 0 To CurCommand.Count - 1
+                If CurCommand(i).ToLower = "/nosaveprofile" Then
+                    If DisbFuState = 1 Then
+                        Form2.Label8.Text = "当前你的更改将不会被保存。部分功能已被禁用。"
+                    Else
+                        Form2.Label8.Text = "当前你的更改将不会被保存。"
+                    End If
+                    UnSaveData = 1
                 End If
-                UnSaveData = 1
-            End If
+            Next
         Catch ex As Exception
         End Try
 
@@ -227,12 +233,14 @@ Public Class BootForm
             ShowModeTips = 0
         End If
 
-        If Not (Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar") Then
-            Form2.Button2.Enabled = False
-            Form2.Button4.Enabled = False
-            Form2.TextBox1.Enabled = False
-            Form2.ComboBox1.Enabled = False
-        End If
+        For i = 0 To CurCommand.Count - 1
+            If Not (CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar") Then
+                Form2.Button2.Enabled = False
+                Form2.Button4.Enabled = False
+                Form2.TextBox1.Enabled = False
+                Form2.ComboBox1.Enabled = False
+            End If
+        Next
 
         Try
             AddKey("Software\CJH", "HKCU")
@@ -397,7 +405,7 @@ Public Class BootForm
                 ElseIf UseTop = 1 Then
                     Me.TopMost = True
                     Form1.TopMost = True
-                ElseIf Me.UseMoveV > 1 Then
+                ElseIf UseTop > 1 Then
                     RegKeyModule.AddReg("Software\CJH\UsefulControl\Settings", "AllowTopMost", 1, RegistryValueKind.DWord, "HKCU")
                     Me.TopMost = True
                     Form1.TopMost = True
@@ -455,204 +463,213 @@ Public Class BootForm
 
         Dim Uif As Integer
         Uif = 0
-        If Command().ToLower = "/blackscr" Then
-            Me.WindowState = FormWindowState.Minimized
-            BlackForm.TopMost = True
-            BlackForm.ShowDialog()
-            Uif = 1
-            End
-        ElseIf Command().ToLower = "/closescr" Then
-            Me.WindowState = FormWindowState.Minimized
-            Form1.ChangeMonitorState(Form1.MonitorMode.MonitorOff)
-            Uif = 1
-            BlackForm.TopMost = True
-            BlackForm.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/fakeshutdown" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
+        For i = 0 To CurCommand.Count - 1
+            If Uif <> 1 Then
+                If CurCommand(i).ToLower = "/blackscr" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    BlackForm.TopMost = True
+                    BlackForm.ShowDialog()
+                    Uif = 1
+                    End
+                ElseIf CurCommand(i).ToLower = "/closescr" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Form1.ChangeMonitorState(Form1.MonitorMode.MonitorOff)
+                    Uif = 1
+                    BlackForm.TopMost = True
+                    BlackForm.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/fakeshutdown" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
 
-            Try
-                For Each TargetNamea As String In NavTargetNames
-                    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                    Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide)
-                Next
-
-                For Each TargetName As String In NavTargetNames
-                    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
-                    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
-                    Dim TargetPath As String '存储进程路径为文本型
-                    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
-                        For i = 0 To TargetKill.Length - 1
-                            TargetPath = TargetKill(i).MainModule.FileName
-                            TargetKill(i).Kill()
+                    Try
+                        For Each TargetNamea As String In NavTargetNames
+                            Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                            Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide)
                         Next
-                        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
-                        '   Exit Sub
-                    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
-                        TargetKill(0).Kill()
-                    End If
-                    'Me.Dispose(1) '关闭自身进程
-                Next
-            Catch ex As Exception
-            End Try
 
-
-            FakeShutdownForm.Timer1.Enabled = True
-            Uif = 1
-            FakeShutdownForm.FakeMode = 0
-            FakeShutdownForm.ShowDialog()
-            End
-            'ElseIf Command().ToLower = "/fakeshutdownui" Then
-            '    FakeShutdownForm.PictureBox1.Visible = True
-            '    FakeShutdownForm.Label1.Visible = True
-            '    Me.WindowState = FormWindowState.Minimized
-            '    FakeShutdownForm.Timer1.Enabled = False
-            '    FakeShutdownForm.ShowDialog()
-            '    End
-        ElseIf Command().ToLower = "/fakeshutdownlenovo" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-
-            Try
-                For Each TargetNamea As String In NavTargetNames
-                    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                    Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide)
-                Next
-
-                For Each TargetName As String In NavTargetNames
-                    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
-                    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
-                    Dim TargetPath As String '存储进程路径为文本型
-                    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
-                        For i = 0 To TargetKill.Length - 1
-                            TargetPath = TargetKill(i).MainModule.FileName
-                            TargetKill(i).Kill()
+                        For Each TargetName As String In NavTargetNames
+                            'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                            Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                            Dim TargetPath As String '存储进程路径为文本型
+                            If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                                For mf = 0 To TargetKill.Length - 1
+                                    TargetPath = TargetKill(mf).MainModule.FileName
+                                    TargetKill(mf).Kill()
+                                Next
+                                'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                                '   Exit Sub
+                            ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                                TargetKill(0).Kill()
+                            End If
+                            'Me.Dispose(1) '关闭自身进程
                         Next
-                        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
-                        '   Exit Sub
-                    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
-                        TargetKill(0).Kill()
-                    End If
-                    'Me.Dispose(1) '关闭自身进程
-                Next
-            Catch ex As Exception
-            End Try
+                    Catch ex As Exception
+                    End Try
 
+                    FakeShutdownForm.Timer1.Enabled = True
+                    Uif = 1
+                    FakeShutdownForm.FakeMode = 0
+                    FakeShutdownForm.ShowDialog()
+                    End
+                    'ElseIf CurCommand(i).ToLower = "/fakeshutdownui" Then
+                    '    FakeShutdownForm.PictureBox1.Visible = True
+                    '    FakeShutdownForm.Label1.Visible = True
+                    '    Me.WindowState = FormWindowState.Minimized
+                    '    FakeShutdownForm.Timer1.Enabled = False
+                    '    FakeShutdownForm.ShowDialog()
+                    '    End
+                ElseIf CurCommand(i).ToLower = "/fakeshutdownlenovo" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
 
-            FakeShutdownForm.Timer1.Enabled = True
-            Uif = 1
-            FakeShutdownForm.FakeMode = 1
-            FakeShutdownForm.ShowDialog()
-            End
-            'ElseIf Command().ToLower = "/fakeshutdownui" Then
-            '    FakeShutdownForm.PictureBox1.Visible = True
-            '    FakeShutdownForm.Label1.Visible = True
-            '    Me.WindowState = FormWindowState.Minimized
-            '    FakeShutdownForm.Timer1.Enabled = False
-            '    FakeShutdownForm.ShowDialog()
-            '    End
-        ElseIf Command().ToLower = "/locktime" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            LockTimeForm.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/locktime2" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            LockTime2Form.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/pboard" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            PBoardForm.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/pboard2" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            PBoard2Form.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/iboard" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            IBoardpfrm.ShowDialog()
-            End
-        ElseIf Command().ToLower = "/volup" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.up))
-            End
-        ElseIf Command().ToLower = "/voldown" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.down))
-            End
-        ElseIf Command().ToLower = "/volmute" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.mute))
-            End
-        ElseIf Command().ToLower = "/blacku" Then
-            Me.WindowState = FormWindowState.Minimized
-            Me.Hide()
-            Me.Visible = False
-            Uif = 1
-            Try
-                For Each TargetNamea As String In NavTargetNames
-                    Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
-                    Shell("taskkill.exe /f /im *" & TargetNamea & "*", AppWinStyle.Hide)
-                Next
-
-                For Each TargetName As String In NavTargetNames
-                    'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
-                    Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
-                    Dim TargetPath As String '存储进程路径为文本型
-                    If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
-                        For i = 0 To TargetKill.Length - 1
-                            TargetPath = TargetKill(i).MainModule.FileName
-                            TargetKill(i).Kill()
+                    Try
+                        For Each TargetNamea As String In NavTargetNames
+                            Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                            Shell("taskkill.exe /f /im " & TargetNamea & "*", AppWinStyle.Hide)
                         Next
-                        'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
-                        '   Exit Sub
-                    ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
-                        TargetKill(0).Kill()
-                    End If
-                    'Me.Dispose(1) '关闭自身进程
-                Next
-            Catch ex As Exception
-            End Try
 
-            BlackForm.TopMost = False
-            BlackForm.ShowDialog()
-            End
-        End If
-        If Uif <> 1 Then
-            If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
-                Dim createdNew As Boolean
-                Dim mutex As System.Threading.Mutex = New System.Threading.Mutex(True, "UsefulControl", createdNew)
-                If createdNew = False Then
+                        For Each TargetName As String In NavTargetNames
+                            'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                            Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                            Dim TargetPath As String '存储进程路径为文本型
+                            If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                                For mg = 0 To TargetKill.Length - 1
+                                    TargetPath = TargetKill(mg).MainModule.FileName
+                                    TargetKill(mg).Kill()
+                                Next
+                                'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                                '   Exit Sub
+                            ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                                TargetKill(0).Kill()
+                            End If
+                            'Me.Dispose(1) '关闭自身进程
+                        Next
+                    Catch ex As Exception
+                    End Try
+
+
+                    FakeShutdownForm.Timer1.Enabled = True
+                    Uif = 1
+                    FakeShutdownForm.FakeMode = 1
+                    FakeShutdownForm.ShowDialog()
+                    End
+                    'ElseIf CurCommand(i).ToLower = "/fakeshutdownui" Then
+                    '    FakeShutdownForm.PictureBox1.Visible = True
+                    '    FakeShutdownForm.Label1.Visible = True
+                    '    Me.WindowState = FormWindowState.Minimized
+                    '    FakeShutdownForm.Timer1.Enabled = False
+                    '    FakeShutdownForm.ShowDialog()
+                    '    End
+                ElseIf CurCommand(i).ToLower = "/locktime" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    LockTimeForm.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/locktime2" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    LockTime2Form.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/pboard" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    PBoardForm.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/pboard2" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    PBoard2Form.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/iboard" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    IBoardprms.Button6.Enabled = True
+                    IBoardprms.Button8.Enabled = True
+                    IBoardprms.Button4.Enabled = True
+                    IBoardpfrm.ShowDialog()
+                    End
+                ElseIf CurCommand(i).ToLower = "/volup" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.up))
+                    End
+                ElseIf CurCommand(i).ToLower = "/voldown" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.down))
+                    End
+                ElseIf CurCommand(i).ToLower = "/volmute" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    Call Form1.SendMessageW(Me.Handle, Form1.WM_APPCOMMAND, Me.Handle, New IntPtr(Form1.mute))
+                    End
+                ElseIf CurCommand(i).ToLower = "/blacku" Then
+                    Me.WindowState = FormWindowState.Minimized
+                    Me.Hide()
+                    Me.Visible = False
+                    Uif = 1
+                    Try
+                        For Each TargetNamea As String In NavTargetNames
+                            Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
+                            Shell("taskkill.exe /f /im *" & TargetNamea & "*", AppWinStyle.Hide)
+                        Next
+
+                        For Each TargetName As String In NavTargetNames
+                            'Dim TargetName As String = "fmp" '存储进程名为文本型，注：进程名不加扩展名
+                            Dim TargetKill() As Process = Process.GetProcessesByName(TargetName) '从进程名获取进程
+                            Dim TargetPath As String '存储进程路径为文本型
+                            If TargetKill.Length > 1 Then '判断进程名的数量，如果同名进程数量在2个以上，用For循环关闭进程。
+                                For mm = 0 To TargetKill.Length - 1
+                                    TargetPath = TargetKill(mm).MainModule.FileName
+                                    TargetKill(mm).Kill()
+                                Next
+                                'ElseIf TargetKill.Length = 0 Then '判断进程名的数量，没有发现进程直接弹窗。不需要的，可直接删掉该If子句
+                                '   Exit Sub
+                            ElseIf TargetKill.Length = 1 Then '判断进程名的数量，如果只有一个，就不用For循环
+                                TargetKill(0).Kill()
+                            End If
+                            'Me.Dispose(1) '关闭自身进程
+                        Next
+                    Catch ex As Exception
+                    End Try
+
+                    BlackForm.TopMost = False
+                    BlackForm.ShowDialog()
                     End
                 End If
-                mutex.ReleaseMutex()
             End If
+        Next
+        
+        If Uif <> 1 Then
+            For i = 0 To CurCommand.Count - 1
+                If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
+                    Dim createdNew As Boolean
+                    Dim mutex As System.Threading.Mutex = New System.Threading.Mutex(True, "UsefulControl", createdNew)
+                    If createdNew = False Then
+                        End
+                    End If
+                    mutex.ReleaseMutex()
+                End If
+            Next
         End If
 
         EnbClose = 0
@@ -662,35 +679,41 @@ Public Class BootForm
         'Me.Height = 39
         'Me.Width = 184
 
-
-
+        ToolMode = 0
+        For i = 0 To CurCommand.Count - 1
+            If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
+                ToolMode = 1
+            End If
+        Next
 
         If Command() <> "" Then
-            If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Then
-                If disi.DpiX <= 96 Then
-                    Me.Height = 29
-                    Me.Width = 118
+            For i = 0 To CurCommand.Count - 1
+                If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Then
+                    If disi.DpiX <= 96 Then
+                        Me.Height = 29
+                        Me.Width = 118
+                    Else
+                        Me.Height = 29 * disi.DpiY * 0.01 '* 1.05
+                        Me.Width = 118 * disi.DpiX * 0.01 '* 1.05
+                    End If
+                ElseIf CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
+                    If disi.DpiX <= 96 Then
+                        Me.Height = 118
+                        Me.Width = 29
+                    Else
+                        Me.Height = 118 * disi.DpiY * 0.01 '* 1.05
+                        Me.Width = 29 * disi.DpiX * 0.01 '* 1.05
+                    End If
                 Else
-                    Me.Height = 29 * disi.DpiY * 0.01 '* 1.05
-                    Me.Width = 118 * disi.DpiX * 0.01 '* 1.05
+                    If disi.DpiX <= 96 Then
+                        Me.Height = 118
+                        Me.Width = 29
+                    Else
+                        Me.Height = 118 * disi.DpiY * 0.01 '* 1.05
+                        Me.Width = 29 * disi.DpiX * 0.01 '* 1.05
+                    End If
                 End If
-            ElseIf Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
-                If disi.DpiX <= 96 Then
-                    Me.Height = 118
-                    Me.Width = 29
-                Else
-                    Me.Height = 118 * disi.DpiY * 0.01 '* 1.05
-                    Me.Width = 29 * disi.DpiX * 0.01 '* 1.05
-                End If
-            Else
-                If disi.DpiX <= 96 Then
-                    Me.Height = 118
-                    Me.Width = 29
-                Else
-                    Me.Height = 118 * disi.DpiY * 0.01 '* 1.05
-                    Me.Width = 29 * disi.DpiX * 0.01 '* 1.05
-                End If
-            End If
+            Next
         Else
             If disi.DpiX <= 96 Then
                 Me.Height = 118
@@ -702,41 +725,45 @@ Public Class BootForm
         End If
 
 
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Then
-            Me.Button1.Text = "小工具>..."
-        Else
-            Me.Button1.Text = "小工具"
-        End If
+        For i = 0 To CurCommand.Count - 1
+            If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Then
+                Me.Button1.Text = "小工具>..."
+            Else
+                Me.Button1.Text = "小工具"
+            End If
+        Next
 
         If Command().ToLower <> "" Then
-            If Command().ToLower = "/leftbar" Then
-                a.X = 3 * disi.DpiX * 0.01
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/topbar" Then
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
-                a.Y = 5 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/bottombar" Then
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/lefttopbar" Then
-                a.X = 3 * disi.DpiX * 0.01
-                a.Y = 3 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/righttopbar" Then
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
-                a.Y = 3 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/leftbottombar" Then
-                a.X = 3 * disi.DpiX * 0.01
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/rightbottombar" Then
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
-            ElseIf Command().ToLower = "/rightbar" Then
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
-            Else
-                a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
-                a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
-            End If
+            For i = 0 To CurCommand.Count - 1
+                If CurCommand(i).ToLower = "/leftbar" Then
+                    a.X = 3 * disi.DpiX * 0.01
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/topbar" Then
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
+                    a.Y = 5 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/bottombar" Then
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/lefttopbar" Then
+                    a.X = 3 * disi.DpiX * 0.01
+                    a.Y = 3 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/righttopbar" Then
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
+                    a.Y = 3 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/leftbottombar" Then
+                    a.X = 3 * disi.DpiX * 0.01
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/rightbottombar" Then
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) - 45 * disi.DpiX * 0.01
+                ElseIf CurCommand(i).ToLower = "/rightbar" Then
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
+                Else
+                    a.X = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) - 3 * disi.DpiX * 0.01
+                    a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
+                End If
+            Next
         Else
             a.X = 3 * disi.DpiX * 0.01
             a.Y = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height) / 2 - 100 * disi.DpiX * 0.01
@@ -744,14 +771,16 @@ Public Class BootForm
 
         Me.Location = a
 
-        If Not (Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar") Then
-            'Me.Hide()
-            'Me.WindowState = FormWindowState.Minimized
-            Dim SysDpiX As Single = Me.CreateGraphics().DpiX / 96
-            Dim SysDpiY As Single = Me.CreateGraphics().DpiY / 96
-            Me.Location = New Point(-(Me.Width + 5 * SysDpiX), -(Me.Height + 5 * SysDpiY))
-            Form1.Show()
-        End If
+        For i = 0 To CurCommand.Count - 1
+            If Not ToolMode = 1 Then
+                'Me.Hide()
+                'Me.WindowState = FormWindowState.Minimized
+                Dim SysDpiX As Single = Me.CreateGraphics().DpiX / 96
+                Dim SysDpiY As Single = Me.CreateGraphics().DpiY / 96
+                Me.Location = New Point(-(Me.Width + 5 * SysDpiX), -(Me.Height + 5 * SysDpiY))
+                Form1.Show()
+            End If
+        Next
     End Sub
 
     Sub formatcolorcur()
@@ -896,7 +925,7 @@ Public Class BootForm
     End Sub
 
     Private Sub NotifyIcon1_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
+        If ToolMode = 1 Then
             Me.Show()
         Else
             Form1.Show()
@@ -906,11 +935,11 @@ Public Class BootForm
     End Sub
 
     Private Sub shtbar_Click(sender As System.Object, e As System.EventArgs) Handles shtbar.Click
-        If Command().ToLower = "/topbar" Or Command().ToLower = "/bottombar" Or Command().ToLower = "/lefttopbar" Or Command().ToLower = "/righttopbar" Or Command().ToLower = "/leftbottombar" Or Command().ToLower = "/rightbottombar" Or Command().ToLower = "/leftbar" Or Command().ToLower = "/rightbar" Then
-            Me.Show()
-        Else
-            Form1.Show()
-        End If
+           If ToolMode = 1 Then
+                Me.Show()
+            Else
+                Form1.Show()
+            End If
         Timer2.Enabled = False
         NotifyIcon1.Visible = False
     End Sub

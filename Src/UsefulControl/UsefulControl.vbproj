@@ -131,6 +131,12 @@
     <Compile Include="GPLForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IBoard\IBoardGPLForm.Designer.vb">
+      <DependentUpon>IBoardGPLForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IBoard\IBoardGPLForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PBoard\dtext.Designer.vb">
       <DependentUpon>dtext.vb</DependentUpon>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GPLForm.resx">
       <DependentUpon>GPLForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IBoard\IBoardGPLForm.resx">
+      <DependentUpon>IBoardGPLForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PBoard\dtext.resx">
       <DependentUpon>dtext.vb</DependentUpon>

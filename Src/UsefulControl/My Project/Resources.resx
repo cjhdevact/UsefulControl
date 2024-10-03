@@ -143,9 +143,9 @@
   使用 /voldown 参数音量一次减小2。
   使用 /volmute 参数静音或取消静音。
 
-      部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，为单一用户设置的
-  策略优先级高于针对所有用户设置的策略（需要以管理员身份启动本程序以应用针对所有用户设
-  置的策略）。
+      部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，为所有用户设置的
+  策略优先级高于针对单一用户设置的策略。
+
 二、希沃纯净模式关闭程序
   TimeControl.exe, PowerControl.exe, TDocKiller.exe, 
   IBoard.exe, LockTime.exe, PBoard.exe, 
@@ -880,6 +880,17 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.</value>
+  </data>
+  <data name="IBoardDocText" xml:space="preserve">
+    <value>一、加载说明
+      本程序在启动时会自动加载程序所在根目录名为 ShowImage 的图片，加载格式根据以下优先级排列
+ （.png &gt; .jpg &gt; .bmp &gt; .tiff  &gt; .ico &gt; .gif），即优先加载较前的文件格式，如果在设置勾选了加载
+  上一次打开的图片，则当ShowImage没有被加载时，自动加载上一次的图片。
+二、功能说明
+  1.双击图片展示区域可隐藏标题栏。
+  2.部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，针对所有用户设置的策略优先
+    级高于为单一用户设置的策略。
+  3.使用 /nosaveprofile 参数启动不保存用户设置。</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lenovoshut" type="System.Resources.ResXFileRef, System.Windows.Forms">
