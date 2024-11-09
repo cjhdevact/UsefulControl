@@ -122,6 +122,15 @@ if "%aa%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 if "%aa%" == "1" echo.
 if "%aa%" == "1" Reg add HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /t REG_SZ /d "%programfiles%\CJH\UsefulControl\UsefulControl.exe /leftbar" /f
 echo.
+choice /C YN /T 5 /D N /M "是(Y)否(N)要添加任务计划级自动启动项（添加后只能启动到左边，安装完成后你可以随时在开始菜单的实用工具集合小工具里的自动启动管理开启关闭该启动项）（5秒后自动选择N）"
+if errorlevel 1 set bk=1
+if errorlevel 2 set bk=2
+if "%bk%" == "1" echo.
+if "%bk%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+if "%bk%" == "1" echo.
+if "%bk%" == "1" schtasks.exe /Delete /TN \CJH\UsefulControl /F
+if "%bk%" == "1" schtasks.exe /create /tn \CJH\UsefulControl /xml "%~dp0UsefulControl.xml"
+echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要安装策略到当前系统（安装后可以使用组策略编辑实用工具集合小工具的策略）（仅Windows Vista以上版本支持）（5秒后自动选择Y）"
 if errorlevel 1 set ac=1
 if errorlevel 2 set ac=2
@@ -139,9 +148,9 @@ if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell
 if "%ad%" == "1" if exist "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk" del /q "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk"
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk""):b.TargetPath=""%programfiles%\CJH\UsefulControl\UsefulControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\UsefulControl"":b.Save:close")
 
-
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\UsefulControl\Uninstall.bat"
 copy /y "%~dp03-自动启动管理.bat" "%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"
+copy /y "%~dp0UsefulControl.xml" "%programfiles%\CJH\UsefulControl\UsefulControl.xml"
 
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\实用工具集合小工具\管理自动启动.lnk""):b.TargetPath=""%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"":b.IconLocation=""%programfiles%\CJH\UsefulControl\UsefulControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\UsefulControl"":b.Save:close")
 
@@ -192,6 +201,15 @@ if "%aa%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 if "%aa%" == "1" echo.
 if "%aa%" == "1" Reg add HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /t REG_SZ /d "%programfiles%\CJH\UsefulControl\UsefulControl.exe /leftbar" /f
 echo.
+choice /C YN /T 5 /D N /M "是(Y)否(N)要添加任务计划级自动启动项（添加后只能启动到左边，安装完成后你可以随时在开始菜单的实用工具集合小工具里的自动启动管理开启关闭该启动项）（5秒后自动选择N）"
+if errorlevel 1 set bk=1
+if errorlevel 2 set bk=2
+if "%bk%" == "1" echo.
+if "%bk%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+if "%bk%" == "1" echo.
+if "%bk%" == "1" schtasks.exe /Delete /TN \CJH\UsefulControl /F
+if "%bk%" == "1" schtasks.exe /create /tn \CJH\UsefulControl /xml "%~dp0UsefulControl.xml"
+echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要安装策略到当前系统（安装后可以使用组策略编辑实用工具集合小工具的策略）（仅Windows Vista以上版本支持）（5秒后自动选择Y）"
 if errorlevel 1 set ac=1
 if errorlevel 2 set ac=2
@@ -213,6 +231,7 @@ if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\UsefulControl\Uninstall.bat"
 copy /y "%~dp03-自动启动管理.bat" "%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"
+copy /y "%~dp0UsefulControl.xml" "%programfiles%\CJH\UsefulControl\UsefulControl.xml"
 
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\实用工具集合小工具\管理自动启动.lnk""):b.TargetPath=""%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"":b.IconLocation=""%programfiles%\CJH\UsefulControl\UsefulControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\UsefulControl"":b.Save:close")
 

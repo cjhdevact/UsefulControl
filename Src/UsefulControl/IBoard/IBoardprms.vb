@@ -30,7 +30,8 @@ Public Class IBoardprms
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         If MessageBox.Show("确定关闭图片展示小工具吗？", "图片展示小工具 - 提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
             IBoardpfrm.NotifyIcon1.Visible = False
-            End
+            IBoardpfrm.Close()
+            Me.Close()
         End If
     End Sub
 

@@ -71,7 +71,6 @@ Partial Class IBoardprms
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.Color.Maroon
-        Me.Button4.Enabled = False
         Me.Button4.ForeColor = System.Drawing.Color.White
         Me.Button4.Location = New System.Drawing.Point(30, 409)
         Me.Button4.Name = "Button4"

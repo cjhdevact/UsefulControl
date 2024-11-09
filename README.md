@@ -1,4 +1,6 @@
-# UsefulControl - 实用工具集合小工具
+<h1 align="center">
+  UsefulControl - 实用工具集合小工具
+</h1>
 
 ## 关于本项目
 
@@ -16,7 +18,7 @@
 
 ## 下载
 
-转到[发布页](https://github.com/cjhdevact/UsefulControl/releases)下载程序或源代码。
+转到[发布页](https://github.com/cjhdevact/UsefulControl/releases/latest)下载程序或源代码。
 
 早期版本的源代码也在发布页里。
 
@@ -39,6 +41,18 @@
 ### 设置界面
 
 ![设置界面](Assets/uisetting.png)
+
+## 开源说明
+
+在修改和由本仓库代码衍生的代码中需要说明“基于 UsefulControl 开发”。
+
+## 相关项目
+
+[TDocKiller](https://github.com/cjhdevact/TDocKiller) - 一键关闭课件小工具
+
+[LockTime](https://github.com/cjhdevact/LockTime) - 时钟锁屏小工具
+
+[IBoard](https://github.com/cjhdevact/IBoard) - 图片展示小工具
 
 ## License
 

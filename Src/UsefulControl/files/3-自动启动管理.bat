@@ -89,11 +89,14 @@ echo         6  设置自动启动为右上角
 echo         7  设置自动启动为左下角
 echo         8  设置自动启动为右下角
 echo.
-echo         9  删除自动启动
+echo         9  设置自动启动（任务计划级）
 echo.
-echo        10  退出
+echo        10  删除自动启动
+echo        11  删除自动启动（任务计划级）
 echo.
-echo 注意：如果你已经安装了Userinit级自动启动，那么Userinit级自动启动将会覆盖当前设置，并且只支持启动到右边。要使当前设置生效，请删除Userinit级自动启动。
+echo        12  退出
+echo.
+echo 注意：如果你已经安装了Userinit级自动启动或者任务计划级自启动，那么它们将会覆盖当前设置，并且只支持启动到左边。要使当前设置生效，请删除Userinit级自动启动或任务计划级自启动。
 echo ========================================================
 echo.
 set /p chooice=请输入对应的数字以执行相应的操作：
@@ -105,8 +108,10 @@ if "%chooice%" == "5" goto ad5
 if "%chooice%" == "6" goto ad6
 if "%chooice%" == "7" goto ad7
 if "%chooice%" == "8" goto ad8
-if "%chooice%" == "9" goto de1
-if "%chooice%" == "10" goto enda
+if "%chooice%" == "9" goto ad9
+if "%chooice%" == "10" goto de1
+if "%chooice%" == "11" goto de12
+if "%chooice%" == "12" goto enda
 echo.
 echo 无效的选项，任意键返回。 & pause >nul
 goto main
@@ -183,6 +188,18 @@ Reg add HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /t R
 echo 添加成功，任意键返回... & pause > nul
 goto main
 
+:ad9
+cls
+echo ====================================================
+echo             实用工具集合小工具自动启动管理
+echo ====================================================
+echo.
+echo 注意：安装了任务计划级级自动启动后，那么任务计划级自动启动将会覆盖Explorer的Run下的自动启动项，并且只支持启动到左边。否则如果要自定义启动位置请删除任务计划级自动启动。
+schtasks.exe /Delete /TN \CJH\UsefulControl /F
+schtasks.exe /create /tn \CJH\UsefulControl /xml "%~dp0UsefulControl.xml"
+echo 添加成功，任意键返回... & pause > nul
+goto main
+
 :de1
 cls
 echo ====================================================
@@ -191,5 +208,15 @@ echo ===================================================
 Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /f
 echo 删除成功，任意键返回... & pause > nul
 goto main
+
+:de12
+cls
+echo ====================================================
+echo             实用工具集合小工具自动启动管理
+echo ===================================================
+schtasks.exe /Delete /TN \CJH\UsefulControl /F
+echo 删除成功，任意键返回... & pause > nul
+goto main
+
 
 :enda

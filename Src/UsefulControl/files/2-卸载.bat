@@ -105,6 +105,7 @@ echo.
 echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 echo.
 Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /f
+schtasks.exe /Delete /TN \CJH\UsefulControl /F
 del /q "%windir%\UsefulControl.exe"
 del /q "%windir%\PolicyDefinitions\UsefulControl.admx"
 del /q "%windir%\PolicyDefinitions\zh-CN\UsefulControl.adml"
@@ -144,6 +145,7 @@ echo.
 echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 echo.
 Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v UsefulControl /f
+schtasks.exe /Delete /TN \CJH\UsefulControl /F
 del /q "%windir%\UsefulControl.exe"
 del /q "%windir%\syswow64\UsefulControl.exe"
 del /q "%windir%\PolicyDefinitions\UsefulControl.admx"

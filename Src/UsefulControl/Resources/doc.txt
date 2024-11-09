@@ -71,14 +71,14 @@
   (5)外研社电子课本
     db
   6.通讯工具
-    Wechat,QQ
+    Wechat,Weixin,QQ
   7.工具类
   (1)照片查看器
     PhotosApp,PhotosService,Microsoft.Photos,rundll32,dllhost
   (2)系统工具（相机，录音机，计算器，记事本，画图，截图工具）
     WindowsCamera,SoundRec,SoundRecorder,CalculatorApp,calc,notepad,mspaint,SnippingTool,
     ScreenSketch
-  (3)压缩软件（WinRar，WinZip，7z，BandZip，好压，360压缩，快压）
+  (3)压缩软件（WinRar，WinZip，7z，BandZip，NanaZip，好压，360压缩，快压）
     winrar,winzip,7z,7zFM,bandzip,nanazip,haozip,360zip,kuaizip
 四、特别说明
        关闭屏幕功能可能导致希沃或联想无法获取屏幕信号而不是同时关闭显示器，有可能会触发希沃

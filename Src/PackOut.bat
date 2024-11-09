@@ -12,7 +12,7 @@ copy %~dp0UsefulControl\files\3-自动启动管理.bat %~dp0UsefulControl-Bin\3-自动启
 copy %~dp0UsefulControl\files\4-添加Userinit级自动启动该程序.bat %~dp0UsefulControl-Bin\4-添加Userinit级自动启动该程序.bat
 copy %~dp0UsefulControl\files\5-删除Userinit级自动启动该程序.bat %~dp0UsefulControl-Bin\5-删除Userinit级自动启动该程序.bat
 copy %~dp0UsefulControl\files\UsefulControlAdmxs.exe %~dp0UsefulControl-Bin\UsefulControlAdmxs.exe
-
+copy %~dp0UsefulControl\files\UsefulControl.xml %~dp0UsefulControl-Bin\UsefulControl.xml
 echo.
 echo 完成！
 echo 任意键退出...
