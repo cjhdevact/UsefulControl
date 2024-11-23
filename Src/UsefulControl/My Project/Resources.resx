@@ -156,28 +156,18 @@
   proxyLayerService.exe, ResidentSideBar.Defender.exe, ResidentSideBar.exe, 
   LastContainer.exe, LastContainerDaemon.exe, EasiRecorder.exe, 
   seewoPincoTeacher.exe, seewoPincoTeacherService.exe, PincoMirror.exe, 
-  SeewoService*.exe, SeewoLauncher.exe, CountDownControl.exe
+  SeewoService*.exe, SeewoLauncher.exe, CountDownControl.exe,
   NetworkTestControl.exe, LockTimeScr.exe
 三、一键关闭课件支持关闭的程序
   目前支持关闭包括以下关键字名称的程序：
-  1.Microsoft Office:
+  1.办公软件
+  (1)Microsoft Office
     WINWORD,EXCEL,POWERPNT
-  2.WPS:
+  (2)WPS
     wps,et,wpp,wpspdf,wpsoffice,wpspic
-  3.浏览器（Chrome，Chromium，Edge，Firefox，360系列，2345系列，心愿浏览器，UC浏览器，
-    夸克浏览器，IE，QQ浏览器，希沃浏览器，联想浏览器，搜狗浏览器）
-    msedge,chrome,firefox,360chrome,360se,theworld,liebao,qingniao,Twinkstar,UCBrowser,
-    UCService,2345Explorer,quark,iexplore,QQBrowser,Chromium,SeewoBrowser,360chromex,
-    360aibrowser,SLBrowser,SLB,SogouExplorer,MicrosoftEdge
-  4.播放器以及影音应用
-  (1)PotPlayer
-    PotPlayer,PotPlayerMini,PotPlayerMini64
-  (2)系统的自带播放器
-    Microsoft.Media.Player,Groove,wmplayer,Video.UI
-  (3)QQ影音，暴风影音，央视影音，腾讯视频，酷狗，酷我，爱奇艺，优酷，网易云音乐
-    QQPlayer,baofeng,Cbox,qyplayer,QQLive,kugou,kuwomusic,StormPlayer,YOUKU,YoukuNplayer,
-    AlibabaProtectCon,cloudmusic
-  5.教学软件
+  2.通讯工具（微信，QQ，Tim，钉钉）
+    Wechat,Weixin,QQ,Tim,DingTalk
+  3.教学软件
   (1)希沃
     EasiNote,EasiCamera
   (2)嘉宏高拍仪
@@ -190,11 +180,24 @@
     ScreenRecord,VSKY
   (5)外研社电子课本
     db
-  6.通讯工具
-    Wechat,Weixin,QQ
-  7.工具类
-  (1)照片查看器
-    PhotosApp,PhotosService,Microsoft.Photos,rundll32,dllhost
+  4.浏览器（Chrome，Chromium，Edge，Firefox，360系列，2345系列，心愿浏览器，UC浏览器，
+    夸克浏览器，IE，QQ浏览器，希沃浏览器，联想浏览器，搜狗浏览器，Opera，傲游浏览器）
+    msedge,chrome,firefox,360chrome,360se,theworld,liebao,qingniao,Twinkstar,UCBrowser,
+    UCService,2345Explorer,quark,iexplore,QQBrowser,Chromium,SeewoBrowser,360chromex,
+    360aibrowser,SLBrowser,SLB,SogouExplorer,MicrosoftEdge,opera,Maxthon,2345,360
+  5.播放器以及影音应用
+  (1)PotPlayer
+    PotPlayer,PotPlayerMini,PotPlayerMini64
+  (2)系统的自带播放器
+    Microsoft.Media.Player,Groove,wmplayer,Video.UI
+  (3)QQ影音，暴风影音，央视影音，腾讯视频，酷狗，酷我，爱奇艺，优酷，网易云音乐
+    QQPlayer,baofeng,Cbox,qyplayer,QQLive,kugou,kuwomusic,StormPlayer,YOUKU,YoukuNplayer,
+    AlibabaProtectCon,cloudmusic
+  6.工具类
+  (1)系统照片查看器
+    Photos,PhotosApp,PhotosService,Microsoft.Photos,rundll32,dllhost
+  (2)第三方图片查看器（WPS看图，360看图，2345看图王，ACDSee，FastStone ImageViewer）
+    photolaunch,WPSPic,360Album,360PicBrowser,2345Pic,ACDSee,FSViewer
   (2)系统工具（相机，录音机，计算器，记事本，画图，截图工具）
     WindowsCamera,SoundRec,SoundRecorder,CalculatorApp,calc,notepad,mspaint,SnippingTool,
     ScreenSketch
