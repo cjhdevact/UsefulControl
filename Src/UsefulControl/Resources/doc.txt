@@ -44,9 +44,9 @@
   (1)Microsoft Office
     WINWORD,EXCEL,POWERPNT
   (2)WPS
-    wps,et,wpp,wpspdf,wpsoffice,wpspic
+    wps,et,wpp,wpspdf,wpsoffice
   2.通讯工具（微信，QQ，Tim，钉钉）
-    Wechat,Weixin,QQ,Tim,DingTalk
+    Wechat,Weixin,QQ,Tim.exe,DingTalk
   3.教学软件
   (1)希沃
     EasiNote,EasiCamera
@@ -57,9 +57,7 @@
   (4)联想
     Lenovo.Smart.BoardTools,Lenovo.Smart.SubjectTools,SmartClass,SmartClassPlayer,
     SmartClassService,SmartClassShell,SmartRecorder,BlackboardWriting,DesktopDraw,HTDCom,
-    ScreenRecord,VSKY
-  (5)外研社电子课本
-    db
+    ScreenRecord,VSKY.exe
   4.浏览器（Chrome，Chromium，Edge，Firefox，360系列，2345系列，心愿浏览器，UC浏览器，
     夸克浏览器，IE，QQ浏览器，希沃浏览器，联想浏览器，搜狗浏览器，Opera，傲游浏览器）
     msedge,chrome,firefox,360chrome,360se,theworld,liebao,qingniao,Twinkstar,UCBrowser,
