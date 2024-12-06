@@ -679,7 +679,11 @@ Public Class Form1
 
     Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
         If BootForm.ToolMode = 1 Then
-            Me.Close()
+            If Button14.Text = "正在关闭课件" Then
+                Me.Hide()
+            Else
+                Me.Close()
+            End If
             BootForm.WindowState = FormWindowState.Normal
             BootForm.Show()
         Else
