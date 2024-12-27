@@ -42,7 +42,7 @@ Key fingerprint: 73b80a8d0ba3f662b575f2fc0b78612469e22e59
 Key Type: md5RSA
 ```
 
-你可以在[这里](https://github.com/cjhdevact/UsefulControl/blob/master/Src/UsefulControl/files/rootcert.cer)下载证书来验证程序完整性。
+你可以在[这里](Src/UsefulControl/files/rootcert.cer)下载证书来验证程序完整性。
 
 ## 程序截图
 
