@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    LockTime
-'    Copyright (C) 2023-2024  CJH
+'    Copyright (C) 2023-2025  CJH
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -142,7 +142,7 @@ Public Class LockTimeForm
 
     Private Sub aboutb_Click(sender As System.Object, e As System.EventArgs) Handles aboutb.Click
         MessageBox.Show("时钟锁屏 版本：1.0.7.24092" & vbCrLf & vbCrLf & _
-                        "版权所有 © 2023-2024 CJH。保留所有权利。" & vbCrLf & vbCrLf & _
+                        "版权所有 © 2023-2025 CJH。保留所有权利。" & vbCrLf & vbCrLf & _
                         "本程序支持的命令行：" & vbCrLf & _
                         "/fulltext 居中显示时间（默认）" & vbCrLf & _
                         "/toptext 在顶部显示时间" & vbCrLf & _

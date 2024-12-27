@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    UsefulControl
-'    Copyright (C) 2023-2024  CJH
+'    Copyright (C) 2023-2025  CJH
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@ errcode:
             End If
         End If
 
-        Label1.Text = "实用工具集合小工具 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2023-2024 CJH。"
+        Label1.Text = "实用工具集合小工具 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2023-2025 CJH。"
     End Sub
 
     Sub formatcolorcurset()

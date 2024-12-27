@@ -2,7 +2,7 @@
 ::
 ::     UsefulControl - 1-安装.bat
 ::
-::     版权所有(C) 2023-2024 CJH。
+::     版权所有(C) 2023-2025 CJH。
 ::
 ::     安装批处理
 ::
@@ -78,7 +78,7 @@ echo ====================================================
 echo               实用工具集合小工具安装程序
 echo ====================================================
 echo.
-echo 版权所有(C) 2023-2024 CJH。
+echo 版权所有(C) 2023-2025 CJH。
 echo.
 echo 安装前建议关闭杀毒软件以及在UAC设置中设置UAC等级为最低，否则在安装主程序或如果选择写入自动启动项会被拦截导致安装失败。
 echo.
@@ -131,6 +131,7 @@ if "%bk%" == "1" echo.
 if "%bk%" == "1" schtasks.exe /Delete /TN \CJH\UsefulControl /F
 if "%bk%" == "1" schtasks.exe /create /tn \CJH\UsefulControl /xml "%~dp0UsefulControl.xml"
 echo.
+
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要安装策略到当前系统（安装后可以使用组策略编辑实用工具集合小工具的策略）（仅Windows Vista以上版本支持）（5秒后自动选择Y）"
 if errorlevel 1 set ac=1
 if errorlevel 2 set ac=2
@@ -147,6 +148,12 @@ if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell
 
 if "%ad%" == "1" if exist "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk" del /q "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk"
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk""):b.TargetPath=""%programfiles%\CJH\UsefulControl\UsefulControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\UsefulControl"":b.Save:close")
+
+echo 正在安装软件根证书
+echo.
+echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+echo.
+certmgr.exe -add -c "%~dp0rootcert.cer" -s -r localMachine root
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\UsefulControl\Uninstall.bat"
 copy /y "%~dp03-自动启动管理.bat" "%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"
@@ -228,6 +235,12 @@ if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell
 
 if "%ad%" == "1" if exist "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk" del /q "%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk"
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%userprofile%\..\Public\Desktop\实用工具集合小工具.lnk""):b.TargetPath=""%programfiles%\CJH\UsefulControl\UsefulControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\UsefulControl"":b.Save:close")
+
+echo 正在安装软件根证书
+echo.
+echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+echo.
+certmgr.exe -add -c "%~dp0rootcert.cer" -s -r localMachine root
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\UsefulControl\Uninstall.bat"
 copy /y "%~dp03-自动启动管理.bat" "%programfiles%\CJH\UsefulControl\AutoBootMgr.bat"

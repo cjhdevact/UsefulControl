@@ -2,7 +2,7 @@
 ::
 ::     UsefulControl - 2-卸载.bat
 ::
-::     版权所有(C) 2023-2024 CJH。
+::     版权所有(C) 2023-2025 CJH。
 ::
 ::     卸载批处理
 ::
@@ -126,6 +126,8 @@ Reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstal
 Reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\UsefulControl /v UninstallString /f
 
 cd /d "%windir%"
+
+PUSHD ..
 rd /s /q "%programfiles%\CJH\UsefulControl"
 ::dir /a /s /b "%windir%\CJH\" | findstr . >nul && echo. || rd /s /q "%windir%\CJH"
 
@@ -167,6 +169,7 @@ Reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstal
 Reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\UsefulControl /v UninstallString /f
 
 cd /d "%windir%"
+PUSHD ..
 rd /s /q "%programfiles%\CJH\UsefulControl"
 ::dir /a /s /b "%windir%\CJH" | findstr . >nul && echo. || rd /s /q "%windir%\CJH"
 

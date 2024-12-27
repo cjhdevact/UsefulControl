@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    UsefulControl
-'    Copyright (C) 2023-2024  CJH
+'    Copyright (C) 2023-2025  CJH
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -72,10 +72,17 @@ Public Class FakeShutdownForm
         Me.Label1.Visible = False
         If FakeMode = 1 Then
             Me.TableLayoutPanel1.BackgroundImage = My.Resources.lenovoshut
+            Timer2.Interval = 5 * 60 * 1000
+            Timer2.Enabled = True
         Else
             SeewoFakeShut.Show()
         End If
         'Form1.ChangeMonitorState(Form1.MonitorMode.MonitorOff)
         Timer1.Enabled = False
+    End Sub
+
+    Private Sub Timer2_Tick(sender As System.Object, e As System.EventArgs) Handles Timer2.Tick
+        Me.TableLayoutPanel1.BackgroundImage = Nothing
+        Timer2.Enabled = False
     End Sub
 End Class
