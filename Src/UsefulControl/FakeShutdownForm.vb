@@ -57,7 +57,8 @@ Public Class FakeShutdownForm
             SendMessageW(Me.Handle, &H319, Me.Handle, New IntPtr(down))
         Next
         Me.TableLayoutPanel1.BackgroundImage = Nothing
-
+        Me.PictureBox1.Visible = True
+        Me.Label1.Visible = True
     End Sub
     Private Sub TableLayoutPanel1_MouseDoubleClick(sender As System.Object, e As System.EventArgs) Handles TableLayoutPanel1.MouseDoubleClick
         If a = 5 Then
