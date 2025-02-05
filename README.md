@@ -1,5 +1,5 @@
 <h1 align="center">
-  UsefulControl - 实用工具集合小工具
+  <a href="https://github.com/cjhdevact/UsefulControl">UsefulControl - 实用工具集合小工具</a>
 </h1>
 
 ## 关于本项目

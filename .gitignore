@@ -1,0 +1,9 @@
+/Src/.vs/
+
+/Src/*.suo
+
+/Src/UsefulControl-bin/
+
+/Src/UsefulControl/bin/
+
+/Src/UsefulControl/obj/

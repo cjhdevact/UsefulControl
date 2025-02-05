@@ -102,7 +102,7 @@ Public Class BootForm
         Form1.Show()
     End Sub
 
-    Private Sub BootForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub BootForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CurCommand = Split(Command.ToLower, " ")
         '////////////////////////////////////////////////////////////////////////////////////
         '//
@@ -658,7 +658,7 @@ Public Class BootForm
                 End If
             End If
         Next
-        
+
         If Uif <> 1 Then
             For i = 0 To CurCommand.Count - 1
                 If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
@@ -813,13 +813,26 @@ Public Class BootForm
         End If
     End Sub
 
-    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         If MovedV <> 1 Then
             If Me.Location <> a Then
                 Me.Location = a
             End If
         End If
+        'If Me.TopMost = True Then
+        '    If Me.Visible = True Then
+        '        SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+        '    End If
+        'End If
     End Sub
+    '<DllImport("user32.dll")>
+    'Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    'End Function
+
+    'Const HWND_TOPMOST = -1
+    'Const SWP_NOSIZE As UInteger = &H1
+    'Const SWP_NOMOVE As UInteger = &H2
+    'Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
     'API移动窗体
     Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Boolean
     Declare Function ReleaseCapture Lib "user32" Alias "ReleaseCapture" () As Boolean

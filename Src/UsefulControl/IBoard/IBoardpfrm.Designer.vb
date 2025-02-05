@@ -32,6 +32,7 @@ Partial Class IBoardpfrm
         Me.CFileState = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CHide = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -107,7 +108,10 @@ Partial Class IBoardpfrm
         Me.CHide.Size = New System.Drawing.Size(148, 22)
         Me.CHide.Text = "隐藏(&H)"
         '
-        'pfrm
+        'Timer1
+        '
+        '
+        'IBoardpfrm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
@@ -121,7 +125,7 @@ Partial Class IBoardpfrm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "pfrm"
+        Me.Name = "IBoardpfrm"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "图片展示小工具"
@@ -139,4 +143,5 @@ Partial Class IBoardpfrm
     Friend WithEvents CFileState As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents CHide As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 End Class

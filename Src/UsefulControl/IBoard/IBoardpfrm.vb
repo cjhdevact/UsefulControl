@@ -25,6 +25,7 @@
 '*                                                     *
 '\*****************************************************/
 Imports Microsoft.Win32
+Imports System.Runtime.InteropServices
 
 Public Class IBoardpfrm
     Public pfile As String
@@ -81,6 +82,19 @@ Public Class IBoardpfrm
     '    IBoardprms.Close()
     '    Me.Close()
     'End Sub
+
+    '在Alt+Tab中隐藏
+    Const WS_EX_COMPOSITED = &H2000000 '0x02000000
+    Const WS_EX_NOACTIVATE = &H8000000 '0x08000000
+    Const WS_EX_TOOLWINDOW = &H80 '0x00000080
+    Const WS_EX_TRANSPARENT = &H20 '0x00000020
+    Protected Overrides ReadOnly Property CreateParams As CreateParams
+        Get
+            Dim cp As CreateParams = MyBase.CreateParams
+            cp.ExStyle = cp.ExStyle Or WS_EX_TOOLWINDOW Or WS_EX_COMPOSITED Or WS_EX_NOACTIVATE Or WS_EX_TRANSPARENT
+            Return cp
+        End Get
+    End Property
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         IBoardprms.ShowDialog()
@@ -148,7 +162,7 @@ Public Class IBoardpfrm
     'End Sub
 
     Private Sub pfrm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+ 
         ' 获取当前窗体的 DPI
         Dim currentDpiX As Single = Me.CreateGraphics().DpiX
         Dim currentDpiY As Single = Me.CreateGraphics().DpiY
@@ -617,13 +631,13 @@ Public Class IBoardpfrm
         NotifyIcon1.Visible = False
     End Sub
 
-    Private Sub NotifyIcon1_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
+    Private Sub NotifyIcon1_MouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
         Me.Hsate = 0
         CHide.Text = "隐藏(&H)"
         Me.Show()
     End Sub
 
-    Private Sub CHide_Click(sender As System.Object, e As System.EventArgs) Handles CHide.Click
+    Private Sub CHide_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CHide.Click
         If Hsate = 0 Then
             Me.Hsate = 1
             CHide.Text = "显示(&S)"
@@ -640,4 +654,15 @@ Public Class IBoardpfrm
             Me.Show()
         End If
     End Sub
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+    End Sub
+    <DllImport("user32.dll")>
+    Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    End Function
+
+    Const HWND_TOPMOST = -1
+    Const SWP_NOSIZE As UInteger = &H1
+    Const SWP_NOMOVE As UInteger = &H2
+    Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
 End Class

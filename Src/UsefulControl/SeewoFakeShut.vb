@@ -24,29 +24,39 @@
 '*     Seewo Fake Shutdown UI.                         *
 '*                                                     *
 '\*****************************************************/
+Imports System.Runtime.InteropServices
+
 Public Class SeewoFakeShut
     Public ReTime As Integer
-    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Me.Close()
     End Sub
 
-    Private Sub SeewoFakeShut_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub SeewoFakeShut_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ReTime = 10
 
         Label2.Text = "PC已关机 , 确认关闭整机？" & vbCrLf & "系统将在10秒后关闭"
         Timer1.Enabled = True
     End Sub
 
-    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         If ReTime = 1 Then
             Me.Close()
         Else
             ReTime = ReTime - 1
             Label2.Text = "PC已关机 , 确认关闭整机？" & vbCrLf & "系统将在" & ReTime & "秒后关闭"
         End If
+        'SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
     End Sub
+    '<DllImport("user32.dll")>
+    'Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    'End Function
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+    'Const HWND_TOPMOST = -1
+    'Const SWP_NOSIZE As UInteger = &H1
+    'Const SWP_NOMOVE As UInteger = &H2
+    'Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
     Private Sub Button1_MouseMove(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.MouseMove
