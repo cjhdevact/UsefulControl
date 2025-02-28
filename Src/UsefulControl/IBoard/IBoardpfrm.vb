@@ -38,9 +38,11 @@ Public Class IBoardpfrm
     Public UnSaveData As Integer
     Public DisbFuState As Integer
     Public ShowModeTips As Integer
+    Public NeedStillTopMost As Integer '是否强制顶置
 
     Public scaleX As Single
     Public scaleY As Single
+
     'API移动窗体
     Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Boolean
     Declare Function ReleaseCapture Lib "user32" Alias "ReleaseCapture" () As Boolean
@@ -85,19 +87,21 @@ Public Class IBoardpfrm
 
     '在Alt+Tab中隐藏
     Const WS_EX_COMPOSITED = &H2000000 '0x02000000
-    Const WS_EX_NOACTIVATE = &H8000000 '0x08000000
+    'Const WS_EX_NOACTIVATE = &H8000000 '0x08000000
     Const WS_EX_TOOLWINDOW = &H80 '0x00000080
-    Const WS_EX_TRANSPARENT = &H20 '0x00000020
+    'Const WS_EX_TRANSPARENT = &H20 '0x00000020
     Protected Overrides ReadOnly Property CreateParams As CreateParams
         Get
             Dim cp As CreateParams = MyBase.CreateParams
-            cp.ExStyle = cp.ExStyle Or WS_EX_TOOLWINDOW Or WS_EX_COMPOSITED Or WS_EX_NOACTIVATE Or WS_EX_TRANSPARENT
+            cp.ExStyle = cp.ExStyle Or WS_EX_TOOLWINDOW Or WS_EX_COMPOSITED
             Return cp
         End Get
     End Property
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        NeedStillTopMost = 0
         IBoardprms.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
     Private Sub PictureBox1_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.DoubleClick
@@ -162,7 +166,10 @@ Public Class IBoardpfrm
     'End Sub
 
     Private Sub pfrm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
- 
+        NeedStillTopMost = 1
+        Timer1.Interval = 1000
+        Timer1.Enabled = True
+
         ' 获取当前窗体的 DPI
         Dim currentDpiX As Single = Me.CreateGraphics().DpiX
         Dim currentDpiY As Single = Me.CreateGraphics().DpiY
@@ -655,7 +662,13 @@ Public Class IBoardpfrm
         End If
     End Sub
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
-        SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+        If Me.TopMost = True Then
+            If Me.Visible = True Then
+                If NeedStillTopMost = 1 Then
+                    SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+                End If
+            End If
+        End If
     End Sub
     <DllImport("user32.dll")>
     Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean

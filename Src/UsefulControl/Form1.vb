@@ -384,6 +384,7 @@ Public Class Form1
     Public UseMoveV As Integer
     Public NavTargetNames(32) As String
     Public DocTargetNames(110) As String
+    Public NeedStillTopMost As Integer '是否强制顶置
 
     Delegate Sub MyBut(ByVal StateText As String)
     'API移动窗体
@@ -399,6 +400,14 @@ Public Class Form1
         SendMessage(Me.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0)
     End Sub
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'NeedStillTopMost = 0
+        'If BootForm.ToolMode = 1 Then
+        NeedStillTopMost = 1
+        ' End If
+
+        Timer1.Interval = 1000
+        Timer1.Enabled = True
+
         Call formatcolorcur()
 
         NavTargetNames(0) = "TimeControl"
@@ -674,8 +683,10 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        NeedStillTopMost = 0
         Form2.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
     Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
@@ -708,27 +719,36 @@ Public Class Form1
     End Sub
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles Button8.Click
+        NeedStillTopMost = 0
         If MessageBox.Show("你确定休眠吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+            NeedStillTopMost = 1
             Shell("rundll32 powrProf.dll,SetSuspendState", AppWinStyle.Hide)
         End If
+        NeedStillTopMost = 1
     End Sub
     Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
-    Private Sub Button9_Click(sender As System.Object, e As System.EventArgs) Handles Button9.Click
-        BlackForm.TopMost = True
-        BlackForm.Show()
+    Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
         ChangeMonitorState(MonitorMode.MonitorOff)
-    End Sub
-
-    Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles Button10.Click
+        NeedStillTopMost = 0
         BlackForm.TopMost = True
         BlackForm.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
-    Private Sub Button11_Click(sender As System.Object, e As System.EventArgs) Handles Button11.Click
+    Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button10.Click
+        NeedStillTopMost = 0
+        BlackForm.TopMost = True
+        BlackForm.ShowDialog()
+        NeedStillTopMost = 1
+    End Sub
+
+    Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
+        NeedStillTopMost = 0
         FakeShutdownForm.PictureBox1.Visible = True
         FakeShutdownForm.Label1.Visible = True
         FakeShutdownForm.Timer1.Enabled = False
         FakeShutdownForm.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
     Private Declare Function timeGetTime Lib "winmm.dll" () As Long
@@ -761,7 +781,9 @@ Public Class Form1
 
         FakeShutdownForm.Timer1.Enabled = True
         FakeShutdownForm.FakeMode = 0
+        NeedStillTopMost = 0
         FakeShutdownForm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -771,9 +793,10 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button13_Click(sender As System.Object, e As System.EventArgs) Handles Button13.Click
+    Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
+        NeedStillTopMost = 0
         If MessageBox.Show("确定进入希沃纯净模式吗？" & vbCrLf & "这将会关闭小工具以及希沃后台服务软件。", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
-
+            NeedStillTopMost = 1
             Try
                 For Each TargetNamea As String In NavTargetNames
                     Shell("taskkill.exe /f /im " & TargetNamea & ".exe", AppWinStyle.Hide)
@@ -802,7 +825,7 @@ Public Class Form1
             Shell("taskkill.exe /f /im UsefulControl.exe", AppWinStyle.Hide)
             End
         End If
-
+        NeedStillTopMost = 1
     End Sub
 
     Sub SetButText(ByVal StateText As String)
@@ -848,18 +871,22 @@ Public Class Form1
         Me.Invoke(New MyBut(AddressOf SetButText), "一键关闭课件")
     End Sub
 
-    Private Sub Button14_Click(sender As System.Object, e As System.EventArgs) Handles Button14.Click
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        NeedStillTopMost = 0
         If Not Button14.Text = "正在关闭课件" Then
             If MessageBox.Show("确定关闭课件吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 Dim CloseAppThread As New System.Threading.Thread(AddressOf CloseApp)
                 CloseAppThread.Start()
             End If
         End If
+        NeedStillTopMost = 1
     End Sub
 
     Private Sub Button15_Click(sender As System.Object, e As System.EventArgs) Handles Button15.Click
         Me.Hide()
+        NeedStillTopMost = 0
         LockTimeForm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -871,7 +898,9 @@ Public Class Form1
 
     Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
         Me.Hide()
+        NeedStillTopMost = 0
         LockTime2Form.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -883,7 +912,9 @@ Public Class Form1
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
         Me.Hide()
+        NeedStillTopMost = 0
         PBoardForm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -895,7 +926,9 @@ Public Class Form1
 
     Private Sub Button18_Click(sender As System.Object, e As System.EventArgs) Handles Button18.Click
         Me.Hide()
+        NeedStillTopMost = 0
         PBoard2Form.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -912,7 +945,9 @@ Public Class Form1
             IBoardprms.Button8.Enabled = True
             'IBoardprms.Button4.Enabled = True
         End If
+        NeedStillTopMost = 0
         IBoardpfrm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -950,7 +985,9 @@ Public Class Form1
         End Try
 
         BlackForm.TopMost = False
+        NeedStillTopMost = 0
         BlackForm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -1005,7 +1042,9 @@ Public Class Form1
 
         FakeShutdownForm.Timer1.Enabled = True
         FakeShutdownForm.FakeMode = 1
+        NeedStillTopMost = 0
         FakeShutdownForm.ShowDialog()
+        NeedStillTopMost = 1
         If BootForm.ToolMode = 1 Then
             Me.Close()
             BootForm.WindowState = FormWindowState.Normal
@@ -1014,4 +1053,28 @@ Public Class Form1
             End
         End If
     End Sub
+
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        If Me.TopMost = True Then
+            If Me.Visible = True Then
+                If NeedStillTopMost = 1 Then
+                    SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+                End If
+            End If
+        End If
+    End Sub
+    <DllImport("user32.dll")>
+    Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    End Function
+
+    Const HWND_TOPMOST = -1
+    Const SWP_NOSIZE As UInteger = &H1
+    Const SWP_NOMOVE As UInteger = &H2
+    Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
+
+    'Private Sub Form1_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+    '    If BootForm.ToolMode = 1 Then
+    '        BootForm.StartStillTopMost = 1
+    '    End If
+    'End Sub
 End Class

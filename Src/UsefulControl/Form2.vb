@@ -266,7 +266,9 @@ errcode:
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         If MessageBox.Show("确定关闭实用工具集合小工具吗？", "实用工具集合小工具 - 提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
-            End
+            'End
+            'Application.Exit()
+            System.Environment.Exit(0)
         End If
     End Sub
 
@@ -376,7 +378,8 @@ errcode:
     Private Sub Button5_Click(sender As System.Object, e As System.EventArgs) Handles Button5.Click
         If (MessageBox.Show("确定重启实用工具集合小工具吗？", "实用工具集合小工具", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes) Then
             System.Diagnostics.Process.Start(Application.ExecutablePath, Command)
-            End
+            'End
+            System.Environment.Exit(0)
         End If
     End Sub
 

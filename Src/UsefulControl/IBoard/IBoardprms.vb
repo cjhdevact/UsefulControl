@@ -43,7 +43,7 @@ Public Class IBoardprms
         'Dim ver2 As String
         'ver1 = My.Application.Info.Version.Major.ToString & "." & My.Application.Info.Version.Minor.ToString & "." & My.Application.Info.Version.Build.ToString
         'ver2 = My.Application.Info.Version.Revision.ToString
-        Me.Label6.Text = "图片展示小工具 版本：1.0.2.24101" & vbCrLf & "版权所有 © 2023-2025 CJH。保留所有权利。"
+        Me.Label6.Text = "图片展示小工具 版本：1.0.5.25022" & vbCrLf & "版权所有 © 2023-2025 CJH。保留所有权利。"
         If IBoardpfrm.TopMost = True Then
             Me.CheckBox1.Checked = True
         Else

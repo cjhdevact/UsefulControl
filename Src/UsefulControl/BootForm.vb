@@ -86,6 +86,8 @@ Public Class BootForm
     Public UnSaveData As Integer
     Public DisbFuState As Integer
     Public ShowModeTips As Integer
+    Public NeedStillTopMost As Integer '是否强制顶置
+    'Public StartStillTopMost As Integer
 
     Public CurCommand() As String
     Public ToolMode As Integer
@@ -98,12 +100,25 @@ Public Class BootForm
         Form2.ComboBox2.Enabled = False
     End Sub
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        Form1.Show()
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        NeedStillTopMost = 0
+        Form1.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
     Private Sub BootForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'StartStillTopMost = 0
         CurCommand = Split(Command.ToLower, " ")
+
+        ToolMode = 0
+        NeedStillTopMost = 0
+        For i = 0 To CurCommand.Count - 1
+            If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
+                ToolMode = 1
+                NeedStillTopMost = 1
+            End If
+        Next
+
         '////////////////////////////////////////////////////////////////////////////////////
         '//
         '//  禁用功能策略注册表读取
@@ -679,13 +694,6 @@ Public Class BootForm
         'Me.Height = 39
         'Me.Width = 184
 
-        ToolMode = 0
-        For i = 0 To CurCommand.Count - 1
-            If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
-                ToolMode = 1
-            End If
-        Next
-
         If Command() <> "" Then
             For i = 0 To CurCommand.Count - 1
                 If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Then
@@ -778,6 +786,8 @@ Public Class BootForm
                 Dim SysDpiX As Single = Me.CreateGraphics().DpiX / 96
                 Dim SysDpiY As Single = Me.CreateGraphics().DpiY / 96
                 Me.Location = New Point(-(Me.Width + 5 * SysDpiX), -(Me.Height + 5 * SysDpiY))
+                a = Me.Location
+                NeedStillTopMost = 0
                 Form1.Show()
             End If
         Next
@@ -819,20 +829,26 @@ Public Class BootForm
                 Me.Location = a
             End If
         End If
-        'If Me.TopMost = True Then
-        '    If Me.Visible = True Then
-        '        SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
-        '    End If
+        If Me.TopMost = True Then
+            If Me.Visible = True Then
+                If NeedStillTopMost = 1 Then
+                    SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+                End If
+            End If
+        End If
+        'If StartStillTopMost = 1 Then
+        '    StartStillTopMost = 0
+        '    NeedStillTopMost = 1
         'End If
     End Sub
-    '<DllImport("user32.dll")>
-    'Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
-    'End Function
+    <DllImport("user32.dll")>
+    Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    End Function
 
-    'Const HWND_TOPMOST = -1
-    'Const SWP_NOSIZE As UInteger = &H1
-    'Const SWP_NOMOVE As UInteger = &H2
-    'Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
+    Const HWND_TOPMOST = -1
+    Const SWP_NOSIZE As UInteger = &H1
+    Const SWP_NOMOVE As UInteger = &H2
+    Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
     'API移动窗体
     Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Boolean
     Declare Function ReleaseCapture Lib "user32" Alias "ReleaseCapture" () As Boolean
@@ -896,6 +912,7 @@ Public Class BootForm
 
     Private Sub Timer2_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer2.Tick
         Me.Show()
+        Timer1.Enabled = True
         Timer2.Enabled = False
         NotifyIcon1.Visible = False
     End Sub
@@ -904,7 +921,14 @@ Public Class BootForm
         'If MessageBox.Show("确定要关闭时钟吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = MsgBoxResult.Yes Then
         'End
         'End If
+        'If CurCommand(i).ToLower = "/topbar" Or CurCommand(i).ToLower = "/bottombar" Or CurCommand(i).ToLower = "/lefttopbar" Or CurCommand(i).ToLower = "/righttopbar" Or CurCommand(i).ToLower = "/leftbottombar" Or CurCommand(i).ToLower = "/rightbottombar" Or CurCommand(i).ToLower = "/leftbar" Or CurCommand(i).ToLower = "/rightbar" Then
+        If ToolMode = 1 Then
+            NeedStillTopMost = 0
+        End If
         Form2.ShowDialog()
+        If ToolMode = 1 Then
+            NeedStillTopMost = 1
+        End If
     End Sub
 
     Private Sub Me_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
